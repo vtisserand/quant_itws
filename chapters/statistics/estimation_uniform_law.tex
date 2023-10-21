@@ -1,0 +1,128 @@
+\section{Estimating the support of an uniform law}
+
+\begin{tcolorbox}[width=\linewidth, sharp corners=all, colback=white!95!black]
+Suppose that we have $x_1,\dots,x_n$ observations from an uniform law $X \sim \mathcal{U}[0,\theta]$, where $\theta$ is an unknown parameter that we want to estimate. Give at least two estimators for $\theta$ and compare them.
+\end{tcolorbox}
+
+\begin{itemize}
+
+\item \textbf{Method of moments:}
+
+Having a look at the first order moment, it appears that $\mathbb{E}[X] = \dfrac{\theta}{2}$. Taking the empirical counter-party of this theoretical quantity, we have $\hat{\theta}^{\text{MM}} = \dfrac{2}{n}\sum\limits_{i=1}^n x_i$.\newline
+By applying the strong law of large numbers and the continuous mapping theorem, $\hat{\theta}^{\text{MM}} \xrightarrow{a.s.} \theta$. Thus this estimator is consistent.\newline
+We want asymptotic results on the convergence of this estimator. Before using the CLT, we have to check for the existence of a second-order moment.
+
+\begin{align*}
+    \mathbb{E}[X^2] &= \displaystyle \int_{\mathbb{R}} x^2 f(x) \, \mathrm{d}x \\
+    &= \displaystyle \int_{0}^{\theta} x^2 \dfrac{1}{\theta} \, \mathrm{d}x \\
+    &= \left[ \dfrac{1}{3\theta}x^3 \right]^\theta_0 \\
+    &= \dfrac{\theta^2}{3} < +\infty
+\end{align*}
+
+Thus, we have $\mathbb{V}[X] = \mathbb{E}[X^2] - \mathbb{E}[X]^2 = \dfrac{\theta^2}{12}$. So, $\mathbb{V}[2X_1]  = \dfrac{\theta^2}{3}$.\newline
+
+By applying the central limit theorem, we have : $$\sqrt{n}(\hat{\theta}^{\text{MM}} - \theta) \xrightarrow{(d)} \mathcal{N}\left(0, \dfrac{\theta^2}{3}\right).$$
+
+We have to evaluate the risk of this estimator, that we write as the sum of the squared bias and the variance : $$\text{MSE}(\hat{\theta}^{\text{MM}}) = \mathbb{E}[(\hat{\theta}^{\text{MM}} - \theta)^2] = \mathbb{E}[(\hat{\theta}^{\text{MM}} - \mathbb{E}[\hat{\theta}^{\text{MM}}])^2] + \mathbb{E}[\hat{\theta}^{\text{MM}} - \theta]^2 = \mathbb{V}[\hat{\theta}^{\text{MM}}] + (\mathbb{E}[\hat{\theta}^{\text{MM}}] - \theta)^2.$$
+
+We have $\mathbb{E}[\hat{\theta}^{\text{MM}}] = 0$ and $\mathbb{V}[\hat{\theta}^{\text{MM}}] = \dfrac{1}{n^2}n\mathbb{V}[2X_1] = \dfrac{\theta^2}{3n}.$\newline
+
+Thus, $$\text{MSE}(\hat{\theta}^{\text{MM}}) = \dfrac{\theta^2}{3n}.$$
+
+
+\item \textbf{Maximum likelihood:}
+
+Let's write the likelihood of this model:
+
+\begin{align*}
+    L((X_1,\dots,X_n), \theta) &= \displaystyle \prod_{i=1}^{n} f_X(X_i) \\
+    &= \displaystyle \prod_{i=1}^{n} \dfrac{1}{\theta} \mathbbm{1}_{[0, \theta]}(X_i)\\
+    &= \dfrac{1}{\theta^n} \prod_{i=1}^{n} \mathbbm{1}_{[0, \theta]}(X_i).
+\end{align*}
+
+And this function is maximized by choosing the smallest $\theta$ such that all of the $X_i$ lie in $[0, \theta]$, that is $\hat{\theta}^{\text{MLE}} = \max_{1\leq i \leq n} X_i.$\newline
+
+To check the consistency of this estimator, we will have a look at its convergence (in probability). Let $\theta \in \Theta$ and $\varepsilon >0$ :
+
+\begin{align*}
+    \mathbb{P}_\theta(\lvert\hat{\theta}^{\text{MLE}} - \theta\rvert \ge \varepsilon) &= \mathbb{P}_\theta(\hat{\theta}^{\text{MLE}} \ge \theta + \varepsilon) + \mathbb{P}_\theta(\hat{\theta}^{\text{MLE}} \le \theta - \varepsilon)\\
+    &= 0 + \mathbb{P}_\theta(\max_{1\leq i \leq n} X_i \le \theta - \varepsilon)\\
+    &= \prod_{i=1}^{n} \mathbb{P}_\theta(X_i \le \theta - \varepsilon)\\
+    &= \left(1 - \dfrac{\varepsilon}{\theta} \right)^n \underset{n\to +\infty}{\longrightarrow} 0.
+\end{align*}
+
+
+Thus, $\hat{\theta}^{\text{MLE}} \xrightarrow{\mathbb{P}} \theta$ : this estimator is consistent.\newline
+
+In order to estimate the risk of this estimator, we have to look at the law that the maximum of $n$ independent uniform laws follows. This is done by looking at the cumulative distribution function. Let $x \in [0,\theta] :$
+
+\begin{align*}
+    \mathbb{P}_\theta(X_{(n)} \le x) &= \mathbb{P}_\theta\left(\bigcap_{i=1}^{n} {X_i \le x}\right)\\
+    &= \prod_{i=1}^{n} \mathbb{P}_\theta(X_i \le x)\\
+    &= \left(\dfrac{x}{\theta}\right)^n.
+\end{align*}
+
+Thus, $$F_{X_{(n)}} = \begin{cases}
+        0 & \text{if } x < 0\\
+        \left(\dfrac{x}{\theta}\right)^n & \text{if } 0 \le x \le \theta\\
+        1 & \text{if } x>\theta
+        \end{cases}$$
+
+This cdf as smooth as we need to take its derivative: that will be the density we were looking for:
+
+$$f_{X_{(n)}}(x) = n \dfrac{x^{n-1}}{\theta^n} \mathbbm{1}_{[0, \theta]}(x)$$
+
+Let's compute the bias and the variance.\newline
+
+$$\mathbb{E}[\hat{\theta}^{\text{MLE}}] = \displaystyle \int_{\mathbb{R}} x f_{X_{(n)}}(x) \, \mathrm{d}x = \displaystyle \int_{0}^{\theta} \dfrac{n}{\theta^n} x^n \, \mathrm{d}x = \dfrac{n}{\theta^n} \left[ \dfrac{x^{n+1}}{n+1}\right]^\theta_0 = \dfrac{n}{n+1}\theta.$$
+
+Then, the bias is : $B(\hat{\theta}^{\text{MLE}}) = \dfrac{n}{n+1}\theta - \theta = -\dfrac{1}{n+1}\theta \ne 0.$ We can introduce a corrected estimator that we will consider too : $\hat{\theta}_{\text{corr}}^{\text{MLE}} = \dfrac{n+1}{n} \hat{\theta}^{\text{MLE}}$, such that $\mathbb{E}[\hat{\theta}_{\text{corr}}^{\text{MLE}}] = \theta$:  an unbiased estimator.\newline
+
+Then, we have $$\mathbb{E}[(\hat{\theta}^{\text{MLE}})^2] = \displaystyle \int_{\mathbb{R}} x^2 f_{X_{(n)}}(x) \, \mathrm{d}x = \displaystyle \int_{0}^{\theta} \dfrac{n}{\theta^n} x^{n+1} \, \mathrm{d}x = \dfrac{n}{\theta^n} \left[ \dfrac{x^{n+2}}{n+2}\right]^\theta_0 = \dfrac{n}{n+2}\theta^2.$$ And $$\text{MSE}(\hat{\theta}^{\text{MLE}}) = \mathbb{E}[(\hat{\theta}^{\text{MLE}} - \theta)^2] = \mathbb{E}[(\hat{\theta}^{\text{MLE}})^2] -2 \theta \mathbb{E}[\hat{\theta}^{\text{MLE}}] + \theta^2$$
+
+Thus, $$\text{MSE}(\hat{\theta}^{\text{MLE}}) = \dfrac{n}{n+2}\theta^2 - 2\dfrac{n}{n+1}\theta^2 + \theta^2 = \dfrac{2\theta^2}{(n+1)(n+2)}.$$
+
+And $$\text{MSE}(\hat{\theta}_{\text{corr}}^{\text{MLE}}) = \left(\dfrac{n+1}{n}\right)^2 \mathbb{E}[(\hat{\theta}^{\text{MLE}})^2] - 2\dfrac{n+1}{n}\theta \mathbb{E}[(\hat{\theta}^{\text{MLE}} + \theta^2 = \dfrac{\theta^2}{n(n+1)}.$$
+
+\item \textbf{Maximum a posteriori:}
+
+We write the likelihood of the model in terms of $\theta$ :
+$$L((X_1,\dots,X_n), \theta) = \dfrac{1}{\theta^n} \prod_{i=1}^{n} \mathbbm{1}_{[0, \theta]}(X_i) = \dfrac{1}{\theta^n} \mathbbm{1}_{[X_{(n)}, =\infty[}(\theta).$$
+
+\textbf{Remark :} the set such that $L(., \theta)>0$ is $[0, \theta]$ : it depends on $\theta$, thus the model is not regular. Keep that in mind when dealing with Fisher information for instance.\newline
+
+\begin{enumerate}
+    \item \textbf{Flat prior:}\newline
+
+We apply the definition for a Bayesian estimator with a prior density $\pi_0$ :
+
+\begin{align*}
+    \hat{\theta}^{\text{B}} &= \dfrac{\displaystyle \int_{\Theta} \theta L(x, \theta) \pi_0(\theta) \, \mathrm{d}\lambda(\theta)}{\displaystyle \int_{\Theta} L(x, \theta) \pi_0(\theta) \, \mathrm{d}\lambda(\theta)}\\
+    &= \dfrac{\displaystyle \int_{X_{(n)}}^{+\infty} \theta^{-n+1} \, \mathrm{d}\theta}{\displaystyle \int_{X_{(n)}}^{+\infty} \theta^{-n} \, \mathrm{d}\theta}\\
+    &= \dfrac{n-1}{n-2}X_{(n)}.
+\end{align*}
+
+Bias and MSE are not computed there for sanity reasons.
+
+    \item \textbf{Jeffreys prior:}\newline
+
+The density function of this prior is proportional to the squareroot of the determinant of the Fisher information matrix.\newline
+
+Thus we need to compute this quantity for this model, with n observations (as it is not regular, $I_n \ne n I_1$) :
+
+$$I_n(\theta) = \mathbb{E}\left[\dfrac{\partial \log L_n(\theta)}{\partial \theta}^2\right]$$
+
+We have $I_n(\theta) = \mathbb{E}[(-n/\theta)^2] = \dfrac{n^2}{\theta^2}$\newline
+
+(If we had taken the expectancy of the second-order derivative of the log-likelihood, we would not have had the same result has the model is not regular.)\newline
+
+This gives us the noninformative prior (Jeffreys) : $\pi_0(\theta) \propto \theta^{-1}.$
+
+
+\end{enumerate}
+
+
+
+\end{itemize}
+
+
