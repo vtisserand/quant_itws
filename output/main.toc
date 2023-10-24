@@ -1,5 +1,0 @@
-\babel@toc {english}{}\relax 
-\contentsline {chapter}{\numberline {1}Statistics}{1}{chapter.1}%
-\contentsline {section}{\numberline {1.1}Estimating the support of an uniform law}{1}{section.1.1}%
-\contentsline {chapter}{\numberline {2}Options mathematics}{5}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Dupire formula for local volatility}{5}{section.2.1}%
