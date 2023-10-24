@@ -1,0 +1,30 @@
+\section{The coupons collector}
+
+\begin{tcolorbox}[width=\linewidth, sharp corners=all, colback=white!95!black]
+A chocolate company launches a marketing campaign: for each chocolate bar you buy, you get one collectible card out of a set of $n$ possible cards. We can assume the card are uniformly distributed among the chocolate bars.\newline
+How many chocolate bars should you buy to complete the collection?
+\end{tcolorbox}
+
+Well, at least $n$, even if we are very lucky.\newline
+The first bar we open will yield to a new card. For the second bar, we have a probability $\dfrac{1}{n}$ to get the same card we already have, thus $\dfrac{n-1}{n}$ to get a new card. This follows a geometric law: the expectation for such an event is $\dfrac{n}{n-1}$. And so on, decreasing the probability for each new card we acquire.\newline
+The total expectancy will be the sum of all of these individual processes: 
+$$\mathbb{E}\left[ N \right] = \displaystyle \sum_{k=0}^{n-1} \dfrac{n}{n-k},$$
+with N the random variable that counts the number of chocolate bars eaten to get the full collection.\\
+
+We realize that we are actually dealing with the harmonic sum $H_n = \sum_{k=1}^{n} \frac1{k}$, which can be squeezed between two integrals to get the equivalent: $H_n \sim_{n \to +\infty} \log(n).$\newline
+Thus $N \sim_{n \to +\infty} n\log(n).$\\
+
+To give a confidence interval around the number of chocolate bars we should buy, let's pull up some concentration inequalities.\newline
+We still deal with the sum of independent geometric variables so the variance is easy to compute:
+
+\begin{align*}
+    \operatorname{Var}[N] &= \displaystyle \sum_{k=1}^n \operatorname{Var}[N_i]\\
+    &= \displaystyle \sum_{k=1}^n \left(1 - \dfrac{n-k+1}{n}\right)\left(\dfrac{n}{n-k+1}\right)^2\\
+    &= n\displaystyle \sum_{k=1}^n \dfrac{k-1}{(n-k+1)^2} \sim_{n \to +\infty} n \dfrac{\pi^2}{6}. 
+\end{align*}
+
+Applying Chebychev's inequality, we get: $$\mathbb{P}(\lvert \mathbb{E}[N] - N \rvert \geq k \sigma) \leq \dfrac{1}{k^2}.$$
+
+Some other inequalities could be used to raffinate this result: Chernoff bounds, Vysochanskij–Petunin inequality, etc.
+
+
