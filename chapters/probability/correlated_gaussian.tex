@@ -4,7 +4,8 @@
 Let $(X,Y)$ follow a bivariate normal standard distribution with correlation $\rho$. Find the expectation: $$\mathbb{E}[\operatorname{sgn}(X)\operatorname{sgn}(Y)].$$
 \end{tcolorbox}
 
-$$(X,Y) \sim \mathcal{N}\left(\begin{pmatrix}0\\0\end{pmatrix}, \begin{pmatrix}
+We are interested in the joint distribution of $X$ and $Y$:
+$$\begin{pmatrix}X\\Y\end{pmatrix} \sim \mathcal{N}\left(\begin{pmatrix}0\\0\end{pmatrix}, \begin{pmatrix}
 1 & \rho\\ \rho & 1
 \end{pmatrix}\right).$$
 
@@ -24,7 +25,7 @@ This gives us the shape of the correlated distribution. Qualitatively, we can sa
 \end{figure}
 
 
-Back to our problem: the random variable $\operatorname{sgn}(X)\operatorname{sgn}(Y)$ takes values in the set $\{-1,1\}$. Thus, to get its expectancy, we can compute these discrete probabilities :
+Back to our problem: the random variable $\operatorname{sgn}(X)\operatorname{sgn}(Y)$ takes values in the set $\{-1,1\}$. Thus, to get its expectancy, we can compute these discrete probabilities:
 \begin{align*}
     \mathbb{E}[\operatorname{sgn}(X)\operatorname{sgn}(Y)] &= 1\times \mathbb{P}(\operatorname{sgn}(X)\operatorname{sgn}(Y)=1) -1\times \mathbb{P}(\operatorname{sgn}(X)\operatorname{sgn}(Y)=-1)\\
     &= 1\times \mathbb{P}(\operatorname{sgn}(X)\operatorname{sgn}(Y)=1) -1\times (1-\mathbb{P}(\operatorname{sgn}(X)\operatorname{sgn}(Y)=1))\\
