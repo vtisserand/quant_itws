@@ -14,7 +14,15 @@ To see what happens here, we can compare the density contour of this distributio
 $$\Sigma = P\begin{pmatrix}
 1+\rho & 0\\ 0 & 1-\rho
 \end{pmatrix}P^{-1}.$$
-This gives us the shape of the correlated distribution. Qualitatively, we can say that, as $\rho$ defines how rotated and squished the distribution is, the bigger $\rho$, the higher the probabiliy of $X$ and $Y$ being the same sign.\\
+This gives us the shape of the correlated distribution. Qualitatively, we can say that, as $\rho$ defines how rotated and squished the distribution is, the bigger $\rho$, the higher the probabiliy of $X$ and $Y$ being the same sign.
+
+\begin{figure}[H]
+\includegraphics[width=0.35\textwidth]{images/tikz/bivariate_contour.pdf}
+\centering
+\caption{Density contours of a bivariate normal law, with $\rho=0.7$}
+\label{fig:bivariate_contour}
+\end{figure}
+
 
 Back to our problem: the random variable $\operatorname{sgn}(X)\operatorname{sgn}(Y)$ takes values in the set $\{-1,1\}$. Thus, to get its expectancy, we can compute these discrete probabilities :
 \begin{align*}
@@ -47,8 +55,8 @@ $$\|u\|^2=(1\ 0)\,\Sigma^{-1}(1\ 0)^T=1/(1-\rho^2)$$
 $$\|v\|^2=(0\ 1)\,\Sigma^{-1}(0\ 1)^T=1/(1-\rho^2)$$
 
 so that $\cos(\theta)=-\rho.$ Putting it all together gives 
-$$\mathbb{P}(X>0,Y>0)=\dfrac{\arccos(-\rho)}{ 2\pi}.$$ 
+$$\mathbb{P}(X>0,Y>0)=\dfrac{\arccos(-\rho)}{ 2\pi}.$$
 
-Finally, $$\mathbb{E}[\operatorname{sgn}(X)\operatorname{sgn}(Y)] = \dfrac{2\arccos(-\rho)}{\pi} - 1.$$
+Finally, $$\fbox{\mathbb{E}[\operatorname{sgn}(X)\operatorname{sgn}(Y)] = \dfrac{2\arccos(-\rho)}{\pi} - 1.}$$
 
 Note that if $\rho=0$, we have $\mathbb{E}[\operatorname{sgn}(X)\operatorname{sgn}(Y)]=0$ ; it converges to $1$ as $\rho \longrightarrow 1$ and to $-1$ as $\rho \longrightarrow -1$, which gives us confidence in our answer.
