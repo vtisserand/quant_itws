@@ -1,0 +1,52 @@
+\section{Linear regression}
+
+\begin{tcolorbox}[width=\linewidth, sharp corners=all, colback=white!95!black]
+We are interested in the basic linear regression model where given observations $(x_i, y_i)_{1\leq i \leq n}$ we want to build the model $$Y = \alpha + \beta X + \varepsilon.$$
+
+Explain the underlying hypotheses in the model and derive estimators for the coefficients.
+
+\end{tcolorbox}
+
+The underlying assumptions of the linear model are the following :
+
+\begin{itemize}
+    \item No perfect collinearity between the explanatory variables, otherwise the parameter $\beta$ is not identifiable.
+    \item Homoscedasticity, or constant variance, which can be tested on the residuals. If there is heteroscedasticity, the Gauss-Markov theorem doesn't apply, thus the estimators derived are not the Best Linear Unbiased Estimators (BLUE). It can be corrected thanks to a weighted least squares approach, or a logarithmization of the data.
+    \item Independence of errors. Generalized least squares can handle correlated errors.
+    \item Exogeneity 
+\end{itemize}
+
+We have to minimize the Euclidean distance between the predicted values by the model for $Y$, $\hat{Y}$ and the actual values. This can be written as :
+$$(\hat{\alpha}, \hat{\beta}) \in \operatorname{argmin}_{(\alpha, \beta) \in \mathbb{R}^2} \displaystyle \sum_{i=1}^{n} (y_i - \hat{y_i})^2$$
+
+Replacing with the model, we have to find parameters that minimize $f(\alpha, \beta) = \displaystyle \sum_{i=1}^{n} (y_i - (\alpha + \beta x_i))^2.$ We will write the first order conditions and check by computing the Hessian that we are actually looking at a minimum.
+
+$$\left\{\begin{array}{ll}
+        \dfrac{\partial f}{\partial \alpha}(\alpha, \beta) &= 0 \\
+        \dfrac{\partial f}{\partial \beta}(\alpha, \beta) &= 0
+    \end{array}\right. \Leftrightarrow 
+\left\{\begin{array}{ll}
+        -2\sum_i (y_i - \alpha - \beta x_i) &= 0 \\
+        -2\sum_i x_i (y_i - \alpha - \beta x_i) &= 0
+    \end{array}\right.$$
+
+The first line give $\hat{\alpha} = \overline{y} - \hat{\beta} \overline{x}$ while the second line can be written as the following : 
+\begin{equation*}
+\begin{aligned}
+    \sum_i x_i (y_i - \hat{\alpha} - \hat{\beta} x_i) &= \sum_i y_i x_i - (\overline{y} - \hat{\beta} \overline{x})x_i - \hat{\beta} x_i^2\\
+    &= \sum_i y_i - \overline{y} + \hat{\beta} (\overline{x} - x_i).
+\end{aligned}
+\end{equation*}
+
+Thus 
+\begin{equation*}
+\begin{aligned}
+    &\sum_i x_i (y_i - \hat{\alpha} - \hat{\beta} x_i) = 0 &\Leftrightarrow \sum_i y_i - \overline{y} + \hat{\beta} (\overline{x} - x_i) = 0\\
+    &\Leftrightarrow \hat{\beta} = \dfrac{\sum_i y_i - \overline{y}}{\sum_i x_i - \overline{x}}\\
+    &\Leftrightarrow \hat{\beta} = \dfrac{\sum_i (y_i - \overline{y})(x_i-\overline{x})}{\sum_i (x_i - \overline{x})^2}\\
+    &\Leftrightarrow \boxed{\hat{\beta} = \dfrac{\widehat{\operatorname{Cov}}(X, Y)}{\widehat{\operatorname{Var}}(X)}.}
+\end{aligned}
+\end{equation*}
+
+
+
