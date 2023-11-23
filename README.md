@@ -5,7 +5,10 @@ Not really what you can expect in every job interview, just a compilation of int
 
 # TO-DOs
 
-- [ ] **Learning algorithms**
-  - [ ] Feature engineering / data transformations: kernel trick, signatures
-- [ ] **Numerical methods**
-  - [ ] About Monte-Carlo (variance reduction, QMC)
+**Learning algorithms**
+
+- [ ] Feature engineering / data transformations: kernel trick, signatures
+      **Numerical methods**
+- [ ] About Monte-Carlo (variance reduction, QMC)
+      **Finance**
+- [ ] Varswaps, their replication and some thoughts about tail-hedging
