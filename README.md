@@ -7,15 +7,15 @@ Not really what you can expect in every job interview, just a compilation of int
 
 **Statistics**
 
-- [ ] Central limit theorem: demonstration and counterexamples when we alleviate hypothese (lack of independence, lack of identitically distributed)\
+- [ ] Central limit theorem: demonstration and counterexamples when we alleviate hypothese (lack of independence, lack of identitically distributed)
 
 **Learning algorithms**
 
-- [ ] Feature engineering / data transformations: kernel trick, signatures\
+- [ ] Feature engineering / data transformations: kernel trick, signatures
 
 **Numerical methods**
 
-- [ ] About Monte-Carlo (variance reduction, QMC)\
+- [ ] About Monte-Carlo (variance reduction, QMC)
 
 **Stochastic calculus**
 
@@ -23,9 +23,9 @@ Not really what you can expect in every job interview, just a compilation of int
 
 **Finance**
 
-- [ ] Varswaps, their replication and some thoughts about tail-hedging\
-- [ ] Correlation-based products and dispersion trading: [dual-digitals and worst-of](https://quantnet.com/threads/dual-digital-and-worst-of-basket-options.20660/), [discussion](https://quant.stackexchange.com/questions/75024/how-to-hedge-a-dual-digital-option)\
+- [ ] Varswaps, their replication and some thoughts about tail-hedging
+- [ ] Correlation-based products and dispersion trading: [dual-digitals and worst-of](https://quantnet.com/threads/dual-digital-and-worst-of-basket-options.20660/), [discussion](https://quant.stackexchange.com/questions/75024/how-to-hedge-a-dual-digital-option)
 
 **Computer science**
 
-- [ ] A dive in triangular arbitrage: union-find, Bellman-Ford, [see this blog post](https://reasonabledeviations.com/2019/03/02/currency-arbitrage-graphs/)\
+- [ ] A dive in triangular arbitrage: union-find, Bellman-Ford, [see this blog post](https://reasonabledeviations.com/2019/03/02/currency-arbitrage-graphs/)
