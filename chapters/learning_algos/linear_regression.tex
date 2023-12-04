@@ -3,17 +3,17 @@
 \begin{tcolorbox}[width=\linewidth, sharp corners=all, colback=white!95!black]
 We are interested in the basic linear regression model where given observations $(x_i, y_i)_{1\leq i \leq n}$ we want to build the model $$Y = \alpha + \beta X + \varepsilon.$$
 
-Explain the underlying hypotheses in the model and derive estimators for the coefficients.
+Explain the underlying assumptions in the model and derive estimators for the coefficients.
 
 \end{tcolorbox}
 
-The underlying assumptions of the linear model are the following :
+The underlying assumptions of the linear model are the following:
 
 \begin{itemize}
-    \item No perfect collinearity between the explanatory variables, otherwise the parameter $\beta$ is not identifiable.
-    \item Homoscedasticity, or constant variance, which can be tested on the residuals. If there is heteroscedasticity, the Gauss-Markov theorem doesn't apply, thus the estimators derived are not the Best Linear Unbiased Estimators (BLUE). It can be corrected thanks to a weighted least squares approach, or a logarithmization of the data.
+    \item No perfect multicollinearity between the explanatory variables, otherwise the parameter $\beta$ is not identifiable. This is the \textbf{full-rank} assumption.
     \item Independence of errors. Generalized least squares can handle correlated errors.
-    \item Exogeneity 
+    \item \textbf{Homoscedasticity}, or constant variance, which can be tested on the residuals. If there is heteroscedasticity, the Gauss-Markov theorem doesn't apply, thus the estimators derived are not the Best Linear Unbiased Estimators (BLUE). It can be corrected thanks to a weighted least squares approach, or a logarithmization of the data.
+    \item \textbf{Exogeneity}.
 \end{itemize}
 
 We have to minimize the Euclidean distance between the predicted values by the model for $Y$, $\hat{Y}$ and the actual values. This can be written as :
