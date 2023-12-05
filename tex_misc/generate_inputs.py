@@ -17,7 +17,9 @@ def build_chapter_tex_file(chapter: str) -> None:
         chapter_mappings = yaml.safe_load(yaml_file)["chapter_mappings"]
 
     # Input all the contents for the current chapter
-    tex_content = f"\\chapter{{{chapter_mappings[chapter]}}}\n\n"
+    chapter_name = chapter_mappings[chapter] if chapter in list(
+        chapter_mappings.keys()) else chapter
+    tex_content = f"\\chapter{{{chapter_name}}}\n\n"
     for x in os.listdir(f"../chapters/{chapter}"):
         tex_content += f"\\input{{chapters/{chapter}/{x}}}\n"
 
