@@ -6,6 +6,9 @@ main_file="main"
 # Create the "output" folder if it doesn't exist
 mkdir -p output
 
+# Generate the inputs
+python tex_misc/generate_inputs.py
+
 # Run pdflatex to compile the document
 pdflatex -output-directory=output -interaction=nonstopmode "$main_file.tex"
 
