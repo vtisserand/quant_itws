@@ -1,7 +1,7 @@
 \section{LASSO estimator}
 
 \begin{tcolorbox}[width=\linewidth, sharp corners=all, colback=white!95!black]
-We consider a penalized regression, with the $\ell_1$ norm. The minimization problem now is :
+We consider a penalized regression, with the $\ell_1$ norm. The minimization problem now is:
 
 \begin{equation*}
 \min_{\beta \in \mathbb{R}^p} \quad \lVert Y-X\beta \rVert_2^2 + \lambda \lVert \beta \rVert_1\\
@@ -9,29 +9,22 @@ We consider a penalized regression, with the $\ell_1$ norm. The minimization pro
 
 where $\lambda$ is an hyperparameter.\\
 
-This is called the LASSO regression. Provide an analytical expression of the solution. We will assume that $X$ is orthonormal (that means $X^TX = I_p$).
-
+This is called the LASSO regression. Provide an analytical expression of the solution. For simplicity of the computation, we will assume that $X$ is orthonormal (that means $X^TX = I_p$).
 \end{tcolorbox}
 
 We first expand the objective function:
-
 \begin{equation*}
 \begin{aligned}
     \lVert Y-X\beta \rVert_2^2 + \lambda \lVert \beta \rVert_1 &= Y^TY-Y^TX\beta-\beta^TX^TY+\beta^TX^TX\beta + \lambda \sum_{i=1}^p \lvert\beta_i\rvert\\
-    &= Y^TY + \sum_{i=1}^p -2 \hat{\beta}_i^{\text{OLS}}\beta_i + \beta_i^2 + \lvert\beta_i\rvert
+    &= Y^TY + \sum_{i=1}^p -2 \hat{\beta}_i^{\text{OLS}}\beta_i + \beta_i^2 + \lambda \lvert\beta_i\rvert
 \end{aligned}
 \end{equation*}
 
 For the optimization we can get rid of the first term that doesn't depend on $\beta$, and then, as the objective function is separable,
 
 $$\min_{\beta \in \mathbb{R}^p} \quad \sum_{i=1}^p -2 \hat{\beta}_i^{\text{OLS}}\beta_i + \beta_i^2 + \lambda\lvert\beta_i\rvert = \sum_{i=1}^p \min_{\beta_i \in \mathbb{R}} -2 \hat{\beta}_i^{\text{OLS}}\beta_i + \beta_i^2 + \lambda\lvert\beta_i\rvert$$
-
-we can just minimize each \begin{align*}
-  f_i \colon 
-  x &\mapsto -2 \hat{\beta}_i^{\text{OLS}}\beta_i + \beta_i^2 + \lambda\lvert\beta_i\rvert.
-\end{align*}
-
-The first order condition is enough to find a minimum (check the second-order derivative) and
+we can just minimize each $f_i \colon x &\mapsto -2 \hat{\beta}_i^{\text{OLS}}\beta_i + \beta_i^2 + \lambda\lvert\beta_i\rvert.$
+The first order condition is enough to find a minimum (we have a polynomial in $\beta$ with a positive quadratic coefficient) and
 
 $$f_i'(x) = \left\{
     \begin{array}{ll}
@@ -41,12 +34,11 @@ $$f_i'(x) = \left\{
 \right.$$
 
 We then have to break the analysis in three cases : $\hat{\beta}_i < -\lambda/2$, $ \hat{\beta}_i \in [-\lambda/2, \lambda/2]$ and $\hat{\beta}_i > -\lambda/2$. This gives us the maxima, respectively $x = \hat{\beta}_i + \lambda/2$, $x=0$ and $x = \hat{\beta}_i - \lambda/2$.\\
-
 Overall, we find the following closed-form expression: $$\hat{\beta}_i^{\text{LASSO}} = \operatorname{sign}(\hat{\beta}_i)(\lvert \hat{\beta}_i \rvert - \lambda/2)_{+}$$
 
-LASSO regression is often used as a \textbf{feature selection} tool: with the $\ell_1$ penalization term, some of the smaller $\beta_i$'s are set to 0. Adjusting the hyperparameter $\lambda$ is a way to select more or less features.\\ 
+LASSO regression is often used as a \textbf{feature selection} tool: with the $\ell_1$ penalization term, some of the smaller $\beta_i$'s are set to 0. Adjusting the hyperparameter $\lambda$ is a way to select more or less features.\\
 
-There exist others penalized regression :
+\noindent There exist others penalized regression :
 \begin{itemize}
     \item \textit{Ridge regression}, with a penalization on the $\ell_2$ norm.
     \item \textit{Elastic net}, that combines both penalizations.
