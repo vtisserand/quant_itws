@@ -7,9 +7,10 @@ main_file="main"
 mkdir -p output
 
 # Generate the inputs
-python tex_misc/generate_inputs.py
+python3 tex_misc/generate_inputs.py
 
-# Run pdflatex to compile the document
+# Run pdflatex to compile the document, twice for table of contents and figures
+pdflatex -output-directory=output -interaction=nonstopmode "$main_file.tex"
 pdflatex -output-directory=output -interaction=nonstopmode "$main_file.tex"
 
 # Move the resulting PDF to the current working directory (cwd)
