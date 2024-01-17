@@ -28,4 +28,4 @@ Not really what you can expect in every job interview, just a compilation of int
 
 **Computer science**
 
-- [ ] A dive in triangular arbitrage: union-find, Bellman-Ford, [see this blog post](https://reasonabledeviations.com/2019/03/02/currency-arbitrage-graphs/)
+- [ ] A dive in triangular arbitrage: union-find, Bellman-Ford, [see this blog post](https://reasonabledeviations.com/2019/03/02/currency-arbitrage-graphs/) or [this paper](https://drive.google.com/file/d/13Y_7tPvfvkNXcA_jkD2RMcNc0VQyRPvF/view)
