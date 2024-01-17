@@ -1,6 +1,6 @@
 import os
 import yaml
-
+import logging
 
 def get_folders(path: str) -> list[str]:
     # Get a list of all items (files and folders) in the specified path
@@ -19,8 +19,9 @@ def build_chapter_tex_file(chapter: str) -> None:
     # Input all the contents for the current chapter
     chapter_name = chapter_mappings[chapter] if chapter in list(
         chapter_mappings.keys()) else chapter
+    
     tex_content = f"\\chapter{{{chapter_name}}}\n\n"
-    for x in os.listdir(f"chapters/{chapter}"):
+    for x in sorted(os.listdir(f"chapters/{chapter}")):
         tex_content += f"\\input{{chapters/{chapter}/{x}}}\n"
 
     with open(f"chapters/{chapter}.tex", "w") as tex_file:
@@ -29,7 +30,7 @@ def build_chapter_tex_file(chapter: str) -> None:
 
 def build_inputs() -> None:
     tex_content = ""
-    for chap in get_folders("chapters/"):
+    for chap in sorted(get_folders("chapters/")):
         tex_content += f"\\input{{chapters/{chap}}}\n"
 
     with open("inputs.tex", "w") as tex_file:
@@ -39,4 +40,5 @@ def build_inputs() -> None:
 if __name__ == "__main__":
     for chap in get_folders("chapters/"):
         build_chapter_tex_file(chap)
+        logging.info(f"Input file generated for chapter {chap}.")
     build_inputs()

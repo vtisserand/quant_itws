@@ -1,10 +1,30 @@
 \section{Bayes classifier}
 
 \begin{tcolorbox}[width=\linewidth, sharp corners=all, colback=white!95!black]
-Let's put ourselves under a \textbf{binary classification} setup: we have a distribution -- or dataset -- $(X, Y) \in \mathbb{R} \times \{0,1\}$ of features / target and want to build a classifier h.\newline
+Let's put ourselves under a \textbf{binary classification} setup: we have a distribution -- or dataset -- $(X, Y) \in \mathbb{R} \times \{0,1\}$ of features / target and want to build a classifier $h$.\newline
 In particular, we are looking for a classifier that minimizes the misclassification error $\mathbb{P}(h(X) \neq Y \vert X)$. This optimal classifier is called \textbf{Bayes predictor}, derive its expression.
 
 \end{tcolorbox}
 
+Let's compute the risk for a classifier $h$:
+\begin{align*}
+    \mathbb{P}(h(X) \neq Y | X) &= 1 - \mathbb{P}(h(X) = Y | X)\\
+    &= 1 - \mathbb{E}\left[\mathbbm{1}\{h(X) = Y\} | X\right]\\
+    &= 1 - \mathbb{E}\left[\mathbbm{1}\{h(X)=0, Y=0\} | X\right] - \mathbb{E}\left[\mathbbm{1}\{h(X)=1, Y=1\} | X\right]\\
+    &= 1 - \mathbb{E}\left[\mathbbm{1}\{h(X)=0\}\mathbbm{1}\{Y=0\} | X\right] - \mathbb{E}\left[\mathbbm{1}\{h(X)=1\}\mathbbm{1}\{Y=1\} | X\right]\\
+    &= 1 - \mathbbm{1}\{h(X)=0\} \mathbb{E}\left[\mathbbm{1}\{Y=0\} | X\right] - \mathbbm{1}\{h(X)=1\} \mathbb{E}\left[\mathbbm{1}\{Y=0\} | X\right] \\ & \text{as $h(X)$ depends only on $X$}\\
+    &= 1 - \mathbbm{1}\{h(X)=0\}(1-\eta(X)) - \mathbbm{1}\{h(X)=1\}\eta(X) \\ & \text{with $\eta(X) = \mathbb{P}(Y=1 | X)$}\\
+    &= \eta(X) - (2\eta(X) - 1)\mathbbm{1}\{h(X)=1\}.
+\end{align*}
 
+
+Consider $g^{*}$ the classifier that minimizes the theoretical risk. By definition, $\mathbb{P}(h(X) \neq Y | X) - \mathbb{P}(g^{*}(X) \neq Y | X) \geq 0$, thus $(2\eta(X) - 1)\(\mathbbm{1}\{g^{*}(X)=1\} - \mathbbm{1}\{h(X)=1\}\) \geq 0.$\newline
+
+Separating cases:
+\begin{itemize}
+    \item If $g^{*}(X) = 1$, the previous equation yields $\eta(X) \geq 1/2$,
+    \item While If $g^{*}(X) = 0$, twe must have $\eta(X) < 1/2$.
+\end{itemize}
+
+Indeed, the optimal Bayes predictor is $\boxed{g^{*}(X) = \mathbbm{1}\{\eta(X) \geq 1/2\},}$ where $\eta(X) = \mathbb{P}(Y=1 | X).$
 
