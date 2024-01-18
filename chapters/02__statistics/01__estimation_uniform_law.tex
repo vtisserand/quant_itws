@@ -4,12 +4,10 @@
 Suppose that we have $x_1,\dots,x_n$ observations from an uniform law $X \sim \mathcal{U}[0,\theta]$, where $\theta$ is an unknown parameter that we want to estimate. Give at least two estimators for $\theta$ and compare them.
 \end{tcolorbox}
 
-\begin{itemize}
+\paragraph*{Method of moments:}\\
 
-\item \textbf{Method of moments:}
-
-Having a look at the first order moment, it appears that $\mathbb{E}[X] = \dfrac{\theta}{2}$. Taking the empirical counter-party of this theoretical quantity, we have $\hat{\theta}^{\text{MM}} = \dfrac{2}{n}\sum\limits_{i=1}^n x_i$.\newline
-By applying the strong law of large numbers and the continuous mapping theorem, $\hat{\theta}^{\text{MM}} \xrightarrow{a.s.} \theta$. Thus this estimator is consistent.\newline
+Having a look at the first order moment, it appears that $\mathbb{E}[X] = \theta/2$. Taking the empirical counter-party of this theoretical quantity, we have $\boxed{\hat{\theta}^{\text{MM}} = \dfrac{2}{n}\sum\limits_{i=1}^n x_i.}$\newline
+By applying the strong law of large numbers and the continuous mapping theorem, $\hat{\theta}^{\text{MM}} \xrightarrow{a.s.} \theta$. Thus \boxed{\text{this estimator is consistent}}.\newline
 We want asymptotic results on the convergence of this estimator. Before using the CLT, we have to check for the existence of a second-order moment.
 
 \begin{align*}
@@ -30,7 +28,7 @@ We have $\mathbb{E}[\hat{\theta}^{\text{MM}}] = 0$ and $\mathbb{V}[\hat{\theta}^
 Thus, $$\text{MSE}(\hat{\theta}^{\text{MM}}) = \dfrac{\theta^2}{3n}.$$
 
 
-\item \textbf{Maximum likelihood:}
+\paragraph*{Maximum likelihood:}
 
 Let's write the likelihood of this model:
 
@@ -84,7 +82,7 @@ Thus, $$\text{MSE}(\hat{\theta}^{\text{MLE}}) = \dfrac{n}{n+2}\theta^2 - 2\dfrac
 
 And $$\text{MSE}(\hat{\theta}_{\text{corr}}^{\text{MLE}}) = \left(\dfrac{n+1}{n}\right)^2 \mathbb{E}[(\hat{\theta}^{\text{MLE}})^2] - 2\dfrac{n+1}{n}\theta \mathbb{E}[(\hat{\theta}^{\text{MLE}} + \theta^2 = \dfrac{\theta^2}{n(n+1)}.$$
 
-\item \textbf{Maximum a posteriori:}
+\paragraph*{Maximum a posteriori:}
 
 We write the likelihood of the model in terms of $\theta$ :
 $$L((X_1,\dots,X_n), \theta) = \dfrac{1}{\theta^n} \prod_{i=1}^{n} \mathbbm{1}_{[0, \theta]}(X_i) = \dfrac{1}{\theta^n} \mathbbm{1}_{[X_{(n)}, =\infty[}(\theta).$$
@@ -122,7 +120,5 @@ This gives us the noninformative prior (Jeffreys) : $\pi_0(\theta) \propto \thet
 \end{enumerate}
 
 
-
-\end{itemize}
 
 
