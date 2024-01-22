@@ -1,17 +1,28 @@
-\section{Bayes classifier}
+\section{Recurrence of a diffusion process}
 
 \begin{tcolorbox}[width=\linewidth, sharp corners=all, colback=white!95!black]
     Considers a Brownian diffusion process $(X_t)_{t\in [0,T]}$ solution of the following stochastic differential equation (SDE):
     \begin{equation*}\label{SDE}
-    dX_t=b(t, X_t)dt+\sigma(t,X_t)dW_t,\qquad X_0=x.
+    dX_t=b(X_t)dt+\sigma(X_t)dW_t,\qquad X_0=x.
     \end{equation*}
-    where $b:[0,T]\times \mathbb{R} \to \mathbb{R}$, $\sigma :[0,T]\times\mathbb{R}\to \mathbb{R}$ are continuous functions and $(W_t)_{t\in [0,T]}$ denotes a Brownian motion defined on a filtered probability space.\newline
+    where $b$, $\sigma$ are continuous functions and $(W_t)_{t\in [0,T]}$ denotes a Brownian motion defined on a filtered probability space.\newline
 
     Under which conditions is this diffusion recurrent? Positive recurrent?\\
 
-    Application: discuss the recurrent or the Ornstein-Uhlenbeck process:
-    \begin{equation*}\label{OU}
-        dX_t=-\mu(X_t - m) dt+\sigmadW_t.
-    \end{equation*}
+    Application: discuss the recurrence of
+    \begin{enumerate}
+        \item the Brownian motion,
+        \item the Ornstein-Uhlenbeck process: $dX_t=-\mu(X_t - m) dt + \sigma dW_t.$
+    \end{enumerate}
 
 \end{tcolorbox}
+
+Recall that a process is called \textbf{recurrent} when leaving from any state it almost surely comes back to any other state of the diffusion ($\mathbb{P}_y(T_x < +\infty) = 1$ where $T_x$ is the first return time $\inf \{t\geq 0 : X_t = x\}$ and $\mathbb{P}_y(\cdot)$ states that we are leaving from point $y$), \textbf{recurrent positive} when it does so in a finite time ($\mathbb{E}_{y}\left[T_x\right] < \infty$).\newline
+
+The infinitesimal operator of this diffusion is written:
+\[
+\mathcal{A}f(x) = b(x) \dfrac{\partial f}{\partial x} + \dfrac{1}{2}\sigma^2(x) \dfrac{\partial^2 f}{\partial x^2}. 
+\]
+
+With an arbitrary $x_0 \in \mathbb{R}$, the scale function\footnote{the scale function is one of the characteristics associated to a diffusion process, along with the speed measure and killed measure.} $S(x) \coloneqq \displaystyle \int_{x_0}^{x} \exp\left\{-2\displaystyle \int_{x_0}^{y} \frac{b(z)}{\sigma^2(z)} \,dz\right\} \,dy$ is a solution of $\mathcal{A}f(x)=0,$\footnote{this makes $(S(X_t))_{t\geq0}$ a martingale by the way.} thus provides a recurrence criterion: the process $X$ is recurrent if and only if $S(+\infty) = +\infty$ and $S(-\infty) = -\infty$.
+
