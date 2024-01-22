@@ -1,0 +1,17 @@
+\section{Bayes classifier}
+
+\begin{tcolorbox}[width=\linewidth, sharp corners=all, colback=white!95!black]
+    Considers a Brownian diffusion process $(X_t)_{t\in [0,T]}$ solution of the following stochastic differential equation (SDE):
+    \begin{equation*}\label{SDE}
+    dX_t=b(t, X_t)dt+\sigma(t,X_t)dW_t,\qquad X_0=x.
+    \end{equation*}
+    where $b:[0,T]\times \mathbb{R} \to \mathbb{R}$, $\sigma :[0,T]\times\mathbb{R}\to \mathbb{R}$ are continuous functions and $(W_t)_{t\in [0,T]}$ denotes a Brownian motion defined on a filtered probability space.\newline
+
+    Under which conditions is this diffusion recurrent? Positive recurrent?\\
+
+    Application: discuss the recurrent or the Ornstein-Uhlenbeck process:
+    \begin{equation*}\label{OU}
+        dX_t=-\mu(X_t - m) dt+\sigmadW_t.
+    \end{equation*}
+
+\end{tcolorbox}
