@@ -2,7 +2,7 @@
 
 ...are actually a very nice way to get introduced to new topics, follow an other person investment thought process, etc.
 
-## [Flirting with Models](https://www.flirtingwithmodels.com/){:target="\_blank"}
+## [Flirting with Models](https://www.flirtingwithmodels.com/)
 
 A very good podcast with tons of episodes available and a great diversity among the guests.
 
@@ -10,7 +10,7 @@ A very good podcast with tons of episodes available and a great diversity among 
 
 As its name suggests, this one is more data-oriented.
 
-## [Quantcast](https://www.risk.net/topics/quantcast) (opens in new tab)
+## [Quantcast](https://www.risk.net/topics/quantcast)
 
 The podcast of the Risk.net, often invites academic as well as industry researchers to present recent advances in the quant world.
 
