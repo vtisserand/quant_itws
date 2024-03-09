@@ -10,7 +10,7 @@ A very good podcast with tons of episodes available and a great diversity among 
 
 As its name suggests, this one is more data-oriented.
 
-## [Quantcast](https://www.risk.net/topics/quantcast)
+## [Quantcast](https://www.risk.net/topics/quantcast) (opens in new tab)
 
 The podcast of the Risk.net, often invites academic as well as industry researchers to present recent advances in the quant world.
 
