@@ -2,7 +2,7 @@
 
 ...are actually a very nice way to get introduced to new topics, follow an other person investment thought process, etc.
 
-## [Flirting with Models](https://www.flirtingwithmodels.com/)
+## [Flirting with Models](https://www.flirtingwithmodels.com/){:target="\_blank"}
 
 A very good podcast with tons of episodes available and a great diversity among the guests.
 
