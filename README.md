@@ -9,6 +9,7 @@ Not really what you can expect in every job interview, just a compilation of int
 
 - [ ] Central limit theorem: demonstration and counterexamples when we alleviate hypothese (lack of independence, lack of identitically distributed)
 - [ ] Load balancing and the power of two random choices, [article](https://medium.com/the-intuition-project/load-balancing-the-intuition-behind-the-power-of-two-random-choices-6de2e139ac2f)
+- [ ] Some cool things about [gaussian processes](https://stats.stackexchange.com/questions/506535/gaussian-process-conditioning-xy-sim-n-mu-x-sum-xy-sum-yy-1y-mu)
 
 **Learning algorithms**
 
@@ -31,6 +32,7 @@ Not really what you can expect in every job interview, just a compilation of int
 **Computer science**
 
 - [ ] A dive in triangular arbitrage: union-find, Bellman-Ford, [see this blog post](https://reasonabledeviations.com/2019/03/02/currency-arbitrage-graphs/) or [this paper](https://drive.google.com/file/d/13Y_7tPvfvkNXcA_jkD2RMcNc0VQyRPvF/view)
+- [ ] Linear programming and the simplex algorithm
 
 **Misc / anecdotes**
 
