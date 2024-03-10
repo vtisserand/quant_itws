@@ -13,10 +13,11 @@ Not really what you can expect in every job interview, just a compilation of int
 **Learning algorithms**
 
 - [ ] Feature engineering / data transformations: kernel trick, signatures
+- [ ] SVM solution derivation, duality, RKHS
 
 **Numerical methods**
 
-- [ ] About Monte-Carlo (variance reduction, QMC)
+- [ ] About Monte-Carlo (variance reduction, QMC, MLMC)
 
 **Stochastic calculus**
 
