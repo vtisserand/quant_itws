@@ -9,7 +9,9 @@
 
 \end{tcolorbox}
 
-We assume a geometric brownian motion dynamic for the underlying asset $S_t$. Coumd we find a smooth transformation of the asset that would help in the replication of the payoff? Applying Itô's formula to $f(S_t)$, we get:
-\[f(S_t) = f(S_0) + \displaystyle \int_0^T f'(S_t) \,dS_t + \dfrac{1}{2}\displaystyle \int_0^T f''(S_t) \,d\langle S_t\rangle = f(S_0) + \displaystyle \int_0^T f'(S_t) \,dS_t + \dfrac{1}{2}\displaystyle \int_0^T f''(S_t) \sigma_t^2 S_t^2 \,dt\]
+We assume a geometric brownian motion dynamic for the underlying asset $S_t$. Could we find a smooth transformation of the asset that would help in the replication of the payoff? Applying Itô's formula to $f(S_t)$, we get:
+\[
+f(S_t) = f(S_0) + \displaystyle \int_0^T f'(S_t) \,dS_t + \dfrac{1}{2}\displaystyle \int_0^T f''(S_t) \,d\langle S_t\rangle = f(S_0) + \displaystyle \int_0^T f'(S_t) \,dS_t + \dfrac{1}{2}\displaystyle \int_0^T f''(S_t) \sigma_t^2 S_t^2 \,dt
+\]
 
 To make the variance swap variable leg appear, remark that taking $f = \log$ indeed yields $f''(x) = x^{-2}$, thus 
