@@ -56,15 +56,6 @@ urlcolor=cyan,
 pdfpagemode=FullScreen,
 }
 
-% Bibliography stuff
-\usepackage[
-backend=biber,
-style=alphabetic,
-sorting=ynt,
-natbib=true
-]{biblatex}
-
-\addbibresource{biblio.bib}
 
 
 % Citing code
@@ -119,6 +110,16 @@ showstringspaces=false
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.18}
 
+% Bibliography stuff
+\usepackage[
+backend=biber,
+style=alphabetic,
+sorting=ynt,
+natbib=true
+]{biblatex}
+
+\addbibresource{biblio.bib}
+
 %==== INFORMATION ET REGLES ======================
 
 % Numbering
@@ -144,6 +145,10 @@ pdftitle = {Quantitative finance\\ Interviews preparation \& a bunch of other th
 \setcounter{page}{0}
 
 \input{inputs.tex}
+
+\newpage
+
+\printbibliography[heading=bibintoc,title={References}]
 
 \end{document}
 
