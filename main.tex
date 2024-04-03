@@ -1,5 +1,87 @@
-\documentclass[a4paper, 12pt]{report}
+\documentclass[english, a4paper, 12pt]{report}
 
+% Overall document aspect
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[toc,page]{appendix}
+\usepackage[skip=0.75\baselineskip plus 2pt]{parskip}
+\usepackage{geometry}
+\geometry{vmargin=2.5cm}
+\usepackage{changepage}
+\usepackage{adjustbox}
+
+% For specific parts, tools
+\usepackage{hyperref}
+\usepackage[toc,page]{appendix}
+\usepackage{enumitem}
+
+% Tables
+\usepackage{tabularray}
+\usepackage{pifont}
+\usepackage{xcolor}
+\usepackage{breqn}
+\usepackage{booktabs}
+\newcommand{\cmark}{\textcolor{green!80!black}{\ding{51}}}
+\newcommand{\xmark}{\textcolor{red}{\ding{55}}}
+\usepackage{multirow}
+
+% For images
+\usepackage{graphicx}
+\usepackage[skip=0.5\baselineskip]{caption}
+\usepackage{subcaption}
+\usepackage{wrapfig}
+\usepackage{tikz}
+\usepackage{float} % For forcing placement
+
+% Maths
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{bbm}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}{Proposition}[theorem]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+
+\hypersetup{
+colorlinks=true,
+linkcolor=purple,
+citecolor=purple,
+filecolor=magenta,      
+urlcolor=cyan,
+pdfpagemode=FullScreen,
+}
+
+
+
+% Citing code
+\usepackage{listings}
+
+\renewcommand{\ttdefault}{cmtt}
+\DeclareFixedFont{\ttb}{T1}{cmtt}{bx}{n}{12} % for bold
+\DeclareFixedFont{\ttm}{T1}{cmtt}{m}{n}{12}  % for normal
+% Custom colors
+\usepackage{color}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+% Python style for highlighting
+\newcommand\pythonstyle{\lstset{
+language=Python,
+basicstyle=\ttm,
+morekeywords={self},              % Add keywords here
+keywordstyle=\ttb\color{deepblue},
+emph={MyClass,__init__},          % Custom highlighting
+emphstyle=\ttb\color{deepred},    % Custom highlighting style
+stringstyle=\color{deepgreen},
+frame=tb,                         % Any extra options here
+showstringspaces=false
+}}
+\newcommand\pythoninline[1]{{\pythonstyle\lstinline!#1!}}
 %====================== PACKAGES ======================
 
 \usepackage[english]{babel}
@@ -28,6 +110,16 @@
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.18}
 
+% Bibliography stuff
+\usepackage[
+backend=biber,
+style=alphabetic,
+sorting=ynt,
+natbib=true
+]{biblatex}
+
+\addbibresource{biblio.bib}
+
 %==== INFORMATION ET REGLES ======================
 
 % Numbering
@@ -53,6 +145,10 @@ pdftitle = {Quantitative finance\\ Interviews preparation \& a bunch of other th
 \setcounter{page}{0}
 
 \input{inputs.tex}
+
+\newpage
+
+\printbibliography[heading=bibintoc,title={References}]
 
 \end{document}
 

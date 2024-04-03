@@ -1,0 +1,28 @@
+\section{Betting on volatility -- around varswaps}
+
+\begin{tcolorbox}[width=\linewidth, sharp corners=all, colback=white!95!black]
+    A desk is interested in expressing a view on volatility. To do so they suggest entering a variance swap contract with payoff:
+    \[\dfrac{1}{T} \int_{0}^{T} \sigma_t^2 dt - \sigma_K^2\]
+
+    On the sell side, how would you price and hedge such a contract?\newline
+    On the buy side, if your goal is to tail-hedge your portfolio, could you suggest other approaches than buying a varswap?
+
+\end{tcolorbox}
+
+We assume a geometric brownian motion dynamic for the underlying asset $S_t$. Could we find a smooth transformation of the asset that would help in the replication of the payoff? Applying Itô's formula to $f(S_t)$, we get:
+\[
+f(S_t) = f(S_0) + \int_0^T f'(S_t) \,dS_t + \dfrac{1}{2} \int_0^T f''(S_t) \,d\langle S_t\rangle = f(S_0) + \int_0^T f'(S_t) \,dS_t + \dfrac{1}{2} \int_0^T f''(S_t) \sigma_t^2 S_t^2 \,dt
+\]
+
+To make the variance swap variable leg appear, remark that taking $f = \log$ indeed yields $f''(x) = x^{-2}$.
+This yields:
+\[
+    \int_{0}^{T} \sigma_t^2 dt = 2 \int_0^T \dfrac{dS_t}{S_t} - 2 \log \dfrac{S_T}{S_0}.
+\]
+
+The difficulty here is in the replciation of the log contract. As we are in the case of a twice differentiable payoff $\phi$, we can apply the \textit{Carr-Madan formula}\footnote{First derived in \citetitle{carr1998towards}.} that gives the replication in terms of calls and puts:
+\begin{equation}\label{eqn:carr-madan}
+    \phi(S) = \phi(x) + \phi'(x)(S-x) + \int_0^x \phi''(K)(K-S)^{+} dK + \int_0^x \phi''(K)(S-K)^{+} dK.
+\end{equation}
+
+Gamma exposure, gamma swaps......
