@@ -7,7 +7,7 @@ Not really what you can expect in every job interview, just a compilation of int
 
 **Statistics**
 
-- [ ] Central limit theorem: demonstration and counterexamples when we alleviate hypothese (lack of independence, lack of identitically distributed)
+- [ ] Central limit theorem: demonstration and counterexamples when we alleviate hypothese (lack of independence, lack of identitically distributed) [nice proof](https://perso.eleves.ens-rennes.fr/people/julie.parreaux/agregation.html)
 - [ ] Load balancing and the power of two random choices, [article](https://medium.com/the-intuition-project/load-balancing-the-intuition-behind-the-power-of-two-random-choices-6de2e139ac2f)
 - [ ] Some cool things about [gaussian processes](https://stats.stackexchange.com/questions/506535/gaussian-process-conditioning-xy-sim-n-mu-x-sum-xy-sum-yy-1y-mu)
 

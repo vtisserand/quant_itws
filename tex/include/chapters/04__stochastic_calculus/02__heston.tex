@@ -1,0 +1,71 @@
+\section{Heston model}
+
+\begin{tcolorbox}[width=\linewidth, sharp corners=all, colback=white!95!black]
+    Let's consider the Heston model. Tell me about its dynamics, pricing properties, simulation schemes, calibration.
+
+\end{tcolorbox}
+
+Heston model introduced in \cite{heston1993closed} is a stochastic volatility model that assumes the instantaneous variance dynamics follows a CIR (or square-root) process. It has dynamics:
+\begin{equation*}
+    \left\{
+    \begin{aligned}
+        dS_t &= \mu S_t \, dt + \sqrt{V_t}S_t \, dW_t \\
+        dV_t &= \kappa (\theta - V_t) \, dt + \sigma \sqrt{V_t} \, dB_t,
+    \end{aligned}
+    \right.
+\end{equation*}
+
+with the two Brownians having correlation $\rho$: $\langle dW, dB \rangle_t = \rho dt.$ In the variance process, parameters are the long term variance level $\theta$, the mean-reversion speed $\kappa$  and the vol-of-vol $\sigma$.
+
+Stochastic volatility has been introduced to allow calibration to the smiled and skewed shapes empirically when looking at quoted implied volatilities across different strikes on the market. Although for very short maturities with exploding wings stochastic volatility models may underestimate the options prices (hence the introduction of jumps with Bates model), they remain a very interesting and relevant class of models.
+
+\paragraph*{Existence of a solution}
+non lipschitz coeffs, still there exists a unique solution
+vol vol of vol corr assumed... 
+feller condition
+
+The Heston model belongs to the larger family of \textit{affine models}: the joint process $(\log S, V)$ has an explicit characteristic function that allows for fast and accurate pricing and hedging using Fourier inversion techniques. In  particular Heston model is an affine Markovian model; the popular Stein-Stein model belongs to this class as well, while the Bergomi and Hull-White models are non-affine Markovian models. 
+
+
+
+
+\paragraph{Characteristic function} The Fourier-Laplace transform for the joint process $(\log S, V)$ is:
+\begin{equation}\label{eqn:charac_func}
+    \mathbb{E}\left[\exp{u \log S_T} \mid \mathcal{F}_t\right] = \exp{u \log S_t + \phi (T-t) + \psi (T-t)V_t},
+\end{equation}
+where $\phi, \psi$ are the solutions of Riccati equations -- this allows for tractability and fast calibration of the model\footnote{The log-price satisfies \ref{eqn:charac_func}, however there exists similar equations for other quantities of interest, for instance spot variance and integrated spot variance.}.
+
+\begin{proof}
+    Let's start by finding the \underline{partial differential equation} associated with the model. Feynman-Kac links SDEs to PDEs: for a call price,
+    \[
+        \dfrac{\partial C}{\partial t} + \mathcal{A}C - rC = 0,
+    \]
+    with $\mathcal{A}$ the infinitesimal operator of the diffusion,
+    \[\mathcal{A} = rS \dfrac{\partial}{\partial S} + \kappa(\theta - V) \dfrac{\partial}{\partial V} + \rho \sigma S V \dfrac{\partial^2}{\partial S \partial V} + \dfrac1{2} V S^2 \dfrac{\partial^2}{\partial S^2} + \dfrac1{2} \sigma^2 V \dfrac{\partial^2}{\partial V^2}.\]
+
+
+    with $r = \mu - \frac1{2}\sigma^2$ for switching from the statistical measure to the risk-neutral measure. A financial construction, applying It\^o to an hedged portfolio leads to the same PDE.
+
+
+    Then we make an \textit{ansatz} for the solution: we assume it looks like $C(S_t, V_t, t, T) = S_t P_1 - K e^{-r(T-t)} P_2$\footnote{This is not a surprise when we know Black-Scholes formula for vanillas. Financial practitioners can read these quantities as in-the-money probabilities: $P_1 = \mathbb{Q}^S(S_T > K), P_2 = \mathbb{Q}(S_T > K)$, with the probability measures under different numeraires.}. To simplify this, we transform the first argument to the log-moneyness $x=\log(F_{t,T} / K)$, $F_{t,T}$ the forward price at time $T$ of the stock seen from $t$, and the time to maturity $\tau = T-t$. The ansatz becomes $C(x,y,\tau) = K\left[e^x P_1(x,y,\tau) - P_2(x,y,\tau)\right]$.
+
+    Plugging this ansatz into the pricing PDE,
+
+    Gil-Pelaez inversion theorem.
+\end{proof}
+
+
+For simulating such a process, we have to be careful about the values of the instantaneous variance. Indeed, nothing assures the positivity of the variance, but we have to take its square-root in the log price dynamics. Hence a naive Euler scheme is not feasible.
+
+Estimating the parameters
+
+
+\paragraph{Forward variance}
+
+The forward variance at time $t$ for maturity $T$ is defined as:
+\[ \xi_t^T = \mathbb{E}\left[V_T \mid \mathcal{F}_t \right]. \]
+Taking the expectation in the Heston dynamics yields $d \xi_t^T = \kappa (\theta - \xi_t^T) dT$, satisfied by $\xi_t^T = \theta + e^{-\kappa (T-t)} (\theta - V_t)$.
+\newline Differentiating, we get \[d \xi_t^T = e^{-\kappa (T-t)} \sigma \sqrt{V_t} dB_t.\] In particular this allows to write Heston under an affine forward variance form.
+
+\paragraph{ATMF skew}
+
