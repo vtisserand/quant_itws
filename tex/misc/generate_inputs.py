@@ -13,7 +13,7 @@ def get_folders(path: str) -> list[str]:
 
 def build_chapter_tex_file(chapter: str) -> None:
     # Get nice names for chapters
-    with open("tex_misc/config.yaml", "r") as yaml_file:
+    with open("misc/config.yaml", "r") as yaml_file:
         chapter_mappings = yaml.safe_load(yaml_file)["chapter_mappings"]
 
     # Input all the contents for the current chapter
@@ -21,24 +21,24 @@ def build_chapter_tex_file(chapter: str) -> None:
         chapter_mappings.keys()) else chapter
     
     tex_content = f"\\chapter{{{chapter_name}}}\n\n"
-    for x in sorted(os.listdir(f"chapters/{chapter}")):
-        tex_content += f"\\input{{chapters/{chapter}/{x}}}\n"
+    for x in sorted(os.listdir(f"include/chapters/{chapter}")):
+        tex_content += f"\\input{{include/chapters/{chapter}/{x}}}\n"
 
-    with open(f"chapters/{chapter}.tex", "w") as tex_file:
+    with open(f"include/chapters/{chapter}.tex", "w") as tex_file:
         tex_file.write(tex_content)
 
 
 def build_inputs() -> None:
     tex_content = ""
-    for chap in sorted(get_folders("chapters/")):
-        tex_content += f"\\input{{chapters/{chap}}}\n"
+    for chap in sorted(get_folders("include/chapters/")):
+        tex_content += f"\\input{{include/chapters/{chap}}}\n"
 
     with open("inputs.tex", "w") as tex_file:
         tex_file.write(tex_content)
 
 
 if __name__ == "__main__":
-    for chap in get_folders("chapters/"):
+    for chap in get_folders("include/chapters/"):
         build_chapter_tex_file(chap)
         logging.info(f"Input file generated for chapter {chap}.")
     build_inputs()
