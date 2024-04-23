@@ -23,7 +23,7 @@ We first expand the objective function:
 For the optimization we can get rid of the first term that doesn't depend on $\beta$, and then, as the objective function is separable,
 
 $$\min_{\beta \in \mathbb{R}^p} \quad \sum_{i=1}^p -2 \hat{\beta}_i^{\text{OLS}}\beta_i + \beta_i^2 + \lambda\lvert\beta_i\rvert = \sum_{i=1}^p \min_{\beta_i \in \mathbb{R}} -2 \hat{\beta}_i^{\text{OLS}}\beta_i + \beta_i^2 + \lambda\lvert\beta_i\rvert$$
-we can just minimize each $f_i \colon x &\mapsto -2 \hat{\beta}_i^{\text{OLS}}\beta_i + \beta_i^2 + \lambda\lvert\beta_i\rvert.$
+we can just minimize each $f_i \colon x \mapsto -2 \hat{\beta}_i^{\text{OLS}}\beta_i + \beta_i^2 + \lambda\lvert\beta_i\rvert.$
 The first order condition is enough to find a minimum (we have a polynomial in $\beta$ with a positive quadratic coefficient) and
 
 $$f_i'(x) = \left\{

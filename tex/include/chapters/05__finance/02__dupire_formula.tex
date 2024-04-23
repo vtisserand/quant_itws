@@ -28,10 +28,9 @@ We consider the first and second order derivatives with regards to the strike. I
     &= - \displaystyle \int_K^{+\infty} S p(S,t)dS.
 \end{align*}
 
-To explicit this last line, let's rewrite the call price as C = Se^{-qT} \mathcal(d_1) - K e^{-rT} \mathcal(d_2)$ such that $\displaystyle \int_K^{+\infty} S p(S,t)dS = \dfrac{1}{D(t,T)}\left(C - K \dfrac{\partial C}{\partial K}\right)$.\\
+To explicit this last line, let's rewrite the call price as $C = Se^{-qT} \mathcal(d_1) - K e^{-rT} \mathcal(d_2)$ such that $\displaystyle \int_K^{+\infty} S p(S,t)dS = \dfrac{1}{D(t,T)}\left(C - K \dfrac{\partial C}{\partial K}\right)$.
 
 Then, 
-
 \begin{align*}
     I_2 &= \displaystyle \int_{K}^{+\infty} (S-K) \dfrac{\partial^2}{\partial \sigma^2}(\sigma^2 S^2 p(S,t))dS\\
     &= \left[(S - K)\dfrac{\partial}{\partial \sigma}(\sigma^2 S^2 p(S,t))\right]_{S=K}^{S=+\infty} - \displaystyle \dfrac{\partial}{\partial \sigma}(\sigma^2 S^2 p(S,t))dS\\

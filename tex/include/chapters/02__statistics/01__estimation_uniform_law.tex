@@ -4,7 +4,7 @@
 Suppose that we have $x_1,\dots,x_n$ observations from an uniform law $X \sim \mathcal{U}[0,\theta]$, where $\theta$ is an unknown parameter that we want to estimate. Give at least two estimators for $\theta$ and compare them.
 \end{tcolorbox}
 
-\paragraph*{Method of moments:}\\
+\paragraph*{Method of moments:}
 
 Having a look at the first order moment, it appears that $\mathbb{E}[X] = \theta/2$. Taking the empirical counter-party of this theoretical quantity, we have $\boxed{\hat{\theta}^{\text{MM}} = \dfrac{2}{n}\sum\limits_{i=1}^n x_i.}$\newline
 By applying the strong law of large numbers and the continuous mapping theorem, $\hat{\theta}^{\text{MM}} \xrightarrow{a.s.} \theta$. Thus \boxed{\text{this estimator is consistent}}.\newline

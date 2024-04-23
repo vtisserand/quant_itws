@@ -10,11 +10,16 @@ mkdir -p output
 python3 misc/generate_inputs.py
 
 # Run pdflatex to compile the document, twice for table of contents and figures
-pdflatex -output-directory=output -interaction=nonstopmode "$main_file.tex"
-pdflatex -output-directory=output -interaction=nonstopmode "$main_file.tex"
+pdflatex -output-directory=output -interaction=nonstopmode "$main_file"
+pdflatex -output-directory=output -interaction=nonstopmode "$main_file"
+biber "$main_file"
+pdflatex -output-directory=output -interaction=nonstopmode "$main_file"
 
 # Move the resulting PDF to the current working directory (cwd)
 mv "output/$main_file.pdf" .
+
+shopt -s extglob
+mv "$main_file".!(tex|pdf) output/
 
 # Clean up auxiliary files (optional)
 # Uncomment the following lines if you want to remove the auxiliary files

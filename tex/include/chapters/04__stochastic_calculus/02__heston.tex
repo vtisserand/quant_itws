@@ -19,6 +19,8 @@ with the two Brownians having correlation $\rho$: $\langle dW, dB \rangle_t = \r
 
 Stochastic volatility has been introduced to allow calibration to the smiled and skewed shapes empirically when looking at quoted implied volatilities across different strikes on the market. Although for very short maturities with exploding wings stochastic volatility models may underestimate the options prices (hence the introduction of jumps with Bates model), they remain a very interesting and relevant class of models.
 
+\subsubsection*{Thorough mathematical analysis}
+
 \paragraph*{Existence of a solution}
 non lipschitz coeffs, still there exists a unique solution
 vol vol of vol corr assumed... 
@@ -31,7 +33,7 @@ The Heston model belongs to the larger family of \textit{affine models}: the joi
 
 \paragraph{Characteristic function} The Fourier-Laplace transform for the joint process $(\log S, V)$ is:
 \begin{equation}\label{eqn:charac_func}
-    \mathbb{E}\left[\exp{u \log S_T} \mid \mathcal{F}_t\right] = \exp{u \log S_t + \phi (T-t) + \psi (T-t)V_t},
+    \mathbb{E}\left[e^{u \log S_T} \mid \mathcal{F}_t\right] = \exp \{ u \log S_t + \phi (T-t) + \psi (T-t)V_t \},
 \end{equation}
 where $\phi, \psi$ are the solutions of Riccati equations -- this allows for tractability and fast calibration of the model\footnote{The log-price satisfies \ref{eqn:charac_func}, however there exists similar equations for other quantities of interest, for instance spot variance and integrated spot variance.}.
 
@@ -47,18 +49,40 @@ where $\phi, \psi$ are the solutions of Riccati equations -- this allows for tra
     with $r = \mu - \frac1{2}\sigma^2$ for switching from the statistical measure to the risk-neutral measure. A financial construction, applying It\^o to an hedged portfolio leads to the same PDE.
 
 
-    Then we make an \textit{ansatz} for the solution: we assume it looks like $C(S_t, V_t, t, T) = S_t P_1 - K e^{-r(T-t)} P_2$\footnote{This is not a surprise when we know Black-Scholes formula for vanillas. Financial practitioners can read these quantities as in-the-money probabilities: $P_1 = \mathbb{Q}^S(S_T > K), P_2 = \mathbb{Q}(S_T > K)$, with the probability measures under different numeraires.}. To simplify this, we transform the first argument to the log-moneyness $x=\log(F_{t,T} / K)$, $F_{t,T}$ the forward price at time $T$ of the stock seen from $t$, and the time to maturity $\tau = T-t$. The ansatz becomes $C(x,y,\tau) = K\left[e^x P_1(x,y,\tau) - P_2(x,y,\tau)\right]$.
+    Then we make an \textit{ansatz} for the solution: we assume it looks like \[C(S_t, V_t, t, T) = S_t P_1 - K e^{-r(T-t)} P_2\footnote{This is not a surprise when we know Black-Scholes formula for vanillas. Financial practitioners can read these quantities as in-the-money probabilities: $P_1 = \mathbb{Q}^S(S_T > K), P_2 = \mathbb{Q}(S_T > K)$, with the probability measures under different numeraires.}.\]
+    To simplify this, we transform the first argument to the log-moneyness $x=\log(F / K)$, $F$ the $T-$forward price of the stock seen from $t$, and the time to maturity $\tau = T-t$. The ansatz becomes $C(x,y,\tau) = K\left[e^x P_1(x,y,\tau) - P_2(x,y,\tau)\right]$.
 
     Plugging this ansatz into the pricing PDE,
 
-    Gil-Pelaez inversion theorem.
+    
 \end{proof}
 
+\paragraph{FFT expression:} then we can derive a model-free formula for vanilla option prices.
 
+Under a risk-neutral measure $\mathbb{Q}$, the price of a the European call option with maturity $T$ and strike $K$ is:
+\begin{align*}
+    C_t = e^{-r(T-t)} \mathbb{E}^{\mathbb{Q}}\left[(S_T - K)^{+}\right]
+    &= e^{-r(T-t)} (\mathbb{E}^{\mathbb{Q}}\left[K \mathbbm{1}_{S_T > K}\right] - \mathbb{E}^{\mathbb{Q}}\left[S_T \mathbbm{1}_{S_T > K}\right]).
+\end{align*}
+
+The second expectation can be computed as $\mathbb{E}^{\mathbb{Q}}\left[S_T \mathbbm{1}_{S_T > K}\right] = K\mathbb{Q}(S_T>K)$ while for the first one we can introduce a change of num\'eraire \cite{el1995changes}. Introducing the change of measure $\dfrac{d\mathbb{Q}_S}{d\mathbb{Q}} \Big|_{\mathcal{F}_t}$, setting the underlying price as num\'eraire, \[\mathbb{E}^{\mathbb{Q}}\left[S_T \mathbbm{1}_{S_T > K}\right] = \mathbb{E}^{\mathbb{Q}}[S_T] \mathbb{E}^{\mathbb{Q}}\left[\dfrac{S_T}{\mathbb{E}^{\mathbb{Q}}[S_T]} \mathbbm{1}_{S_T > K}\right] = e^{r(T-t)}S_t \mathbb{Q}_S(S_T>K)\].
+
+Eventually the option price at time $t$ is \[C_t = S_t \mathbb{Q}_S(S_T>K) - e^{-r(T-t)}K\mathbb{Q}(S_T>K).\]
+
+Then, for a random variable, the Gil-Pelaez inversion theorem (1951) relates the cumulative distribution function $F$ and its characteristic function $\phi$: \[F(x) = \frac1{2} + \frac1{2\pi} \int_0^\infty \dfrac{e^{itx}\phi(-t) - e^{-itx}\phi(t)}{it} dt.\]
+Further computations lead to \cite{shephard1991characteristic}:
+\[\mathbb{P}(X > x) = \frac1{2} + \frac1{\pi} \int_0^\infty \mathfrak{Re}\left[ \dfrac{e^{-itx}\phi(t)}{it} \right] dt.\]
+
+\subsubsection*{Simulating}
+
+\paragraph{Euler scheme}
 For simulating such a process, we have to be careful about the values of the instantaneous variance. Indeed, nothing assures the positivity of the variance, but we have to take its square-root in the log price dynamics. Hence a naive Euler scheme is not feasible.
 
-Estimating the parameters
+\paragraph{Exact $\chi^2$ sampling}
 
+\paragraph{Calibration} Estimating the parameters
+
+\subsubsection*{Other quantities of interest}
 
 \paragraph{Forward variance}
 
@@ -67,6 +91,8 @@ The forward variance at time $t$ for maturity $T$ is defined as:
 Taking the expectation in the Heston dynamics yields $d \xi_t^T = \kappa (\theta - \xi_t^T) dT$, satisfied by $\xi_t^T = \theta + e^{-\kappa (T-t)} (\theta - V_t)$.
 \newline Differentiating, we get \[d \xi_t^T = e^{-\kappa (T-t)} \sigma \sqrt{V_t} dB_t.\] In particular this allows to write Heston under an affine forward variance form.
 
+Such a quantity can be used when computing VIX-related metrics, like pricing VIX vanilla options.
+
 \paragraph{ATMF skew}
 
-a v cool object
+a v cool object haha
