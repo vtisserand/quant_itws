@@ -15,7 +15,7 @@ Heston model introduced in \cite{heston1993closed} is a stochastic volatility mo
     \right.
 \end{equation*}
 
-with the two Brownians having correlation $\rho$: $\langle dW, dB \rangle_t = \rho dt.$ In the variance process, parameters are the long term variance level $\theta$, the mean-reversion speed $\kappa$  and the vol-of-vol $\sigma$.
+with the two Brownians having correlation $\rho$: $\langle dW, dB \rangle_t = \rho dt.$ In the variance process, parameters are the long term variance level $\theta$, the mean-reversion speed $\kappa$  and the vol-of-vol $\sigma$. The set of parameter is $\Theta = \{\mu, \kappa, \theta, \sigma\}$.
 
 Stochastic volatility has been introduced to allow calibration to the smiled and skewed shapes empirically when looking at quoted implied volatilities across different strikes on the market. Although for very short maturities with exploding wings stochastic volatility models may underestimate the options prices (hence the introduction of jumps with Bates model), they remain a very interesting and relevant class of models.
 
@@ -96,3 +96,19 @@ Such a quantity can be used when computing VIX-related metrics, like pricing VIX
 \paragraph{ATMF skew}
 
 a v cool object haha
+
+\paragraph{Link between volatility and vol-of-vol}
+
+Let's consider the log-volatility process $\ln(\sigma_t)$, $\sigma_t = \sqrt{V_t}$, not to be confused with the vol-of-vol parameter $\sigma$.
+
+let's consider the log-volatility dynamics as a transformation of the process $V$: $\ln(\sigma_t) = f(V_t, t)$ with $f \colon (x,t) \mapsto \ln(\sqrt{x})$.
+
+Applying It\^o, we get :
+\begin{align*}
+    d\ln(\sigma_t) &= \dfrac{\partial f}{\partial x} dV_t + \frac1{2}\dfrac{\partial^2 f}{\partial x^2} d\langle V \rangle_t\\
+    &= \frac1{2V_t} dV_t + \frac1{2}\left(\frac1{-V_t^2}\right)\sigma^2 V_t dt\\
+    &= \frac1{\sigma_t^2} \left(\kappa(\theta - \sigma_t^2) - \dfrac{\sigma^2}{2}\right) dt + \dfrac{\sigma}{2\sigma_t}dW_t.
+\end{align*}
+
+We get a vol-of-vol of $\frac{\sigma}{2\sigma_t}$ in the Heston model, which implies that the volatility and the volatility of volatility will move in opposite directions. This is unconsistent with the empirical market observations. 
+
