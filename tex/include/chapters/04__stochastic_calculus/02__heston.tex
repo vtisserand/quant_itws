@@ -69,8 +69,8 @@ The second expectation can be computed as $\mathbb{E}^{\mathbb{Q}}\left[S_T \mat
 
 Eventually the option price at time $t$ is \[C_t = S_t \mathbb{Q}_S(S_T>K) - e^{-r(T-t)}K\mathbb{Q}(S_T>K).\]
 
-Then, for a random variable, the Gil-Pelaez inversion theorem (1951) relates the cumulative distribution function $F$ and its characteristic function $\phi$: \[F(x) = \frac1{2} + \frac1{2\pi} \int_0^\infty \dfrac{e^{itx}\phi(-t) - e^{-itx}\phi(t)}{it} dt.\]
-Further computations lead to \cite{shephard1991characteristic}:
+Then, for a random variable, the Gil-Pelaez inversion theorem \cite{gil1951note} relates the cumulative distribution function $F$ and its characteristic function $\phi$: \[F(x) = \frac1{2} + \frac1{2\pi} \int_0^\infty \dfrac{e^{itx}\phi(-t) - e^{-itx}\phi(t)}{it} dt.\]
+Further computations using real and imaginary parts of an complex quantity $z$ (recall $\mathfrak{Re}(z) = \frac{z + z^{*}}{2}$ and $\mathfrak{Im}(z) = \frac{z - z^{*}}{2}$):
 \[\mathbb{P}(X > x) = \frac1{2} + \frac1{\pi} \int_0^\infty \mathfrak{Re}\left[ \dfrac{e^{-itx}\phi(t)}{it} \right] dt.\]
 
 \subsubsection*{Simulating}
