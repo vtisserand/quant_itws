@@ -38,7 +38,7 @@ The Heston model belongs to the larger family of \textit{affine models}: the joi
 where $\phi, \psi$ are the solutions of Riccati equations -- this allows for tractability and fast calibration of the model\footnote{The log-price satisfies \ref{eqn:charac_func}, however there exists similar equations for other quantities of interest, for instance spot variance and integrated spot variance.}.
 
 \begin{proof}
-    Let's start by finding the \underline{partial differential equation} associated with the model. Feynman-Kac links SDEs to PDEs: for a call price,
+    Let's start by finding the \underline{pricing partial differential equation} associated with the model. Feynman-Kac links SDEs to PDEs: for a call price,
     \[
         \dfrac{\partial C}{\partial t} + \mathcal{A}C - rC = 0,
     \]
@@ -49,7 +49,7 @@ where $\phi, \psi$ are the solutions of Riccati equations -- this allows for tra
     with $r = \mu - \frac1{2}\sigma^2$ for switching from the statistical measure to the risk-neutral measure. A financial construction, applying It\^o to an hedged portfolio leads to the same PDE.
 
 
-    Then we make an \textit{ansatz} for the solution: we assume it looks like \[C(S_t, V_t, t, T) = S_t P_1 - K e^{-r(T-t)} P_2\footnote{This is not a surprise when we know Black-Scholes formula for vanillas. Financial practitioners can read these quantities as in-the-money probabilities: $P_1 = \mathbb{Q}^S(S_T > K), P_2 = \mathbb{Q}(S_T > K)$, with the probability measures under different numeraires.}.\]
+    Then we make an \underline{\textit{ansatz}} for the solution: we assume it looks like \[C(S_t, V_t, t, T) = S_t P_1 - K e^{-r(T-t)} P_2\footnote{This is not a surprise when we know Black-Scholes formula for vanillas. Financial practitioners can read these quantities as in-the-money probabilities: $P_1 = \mathbb{Q}^S(S_T > K), P_2 = \mathbb{Q}(S_T > K)$, with the probability measures under different numeraires.}.\]
     To simplify this, we transform the first argument to the log-moneyness $x=\log(F / K)$, $F$ the $T-$forward price of the stock seen from $t$, and the time to maturity $\tau = T-t$. The ansatz becomes $C(x,y,\tau) = K\left[e^x P_1(x,y,\tau) - P_2(x,y,\tau)\right]$.
 
     Plugging this ansatz into the pricing PDE,
