@@ -1,0 +1,32 @@
+\section{Generating random variables}
+
+\begin{tcolorbox}[width=\linewidth, sharp corners=all, colback=white!95!black]
+    When querying samples from a known distribution, what really happens under the hood? How do computer generate randomness? Explain how you would build \texttt{np.random.normal} or \texttt{np.random.exponential} from scratch.
+\end{tcolorbox}
+
+\subsubsection*{PRNGs}
+
+Before jumping to random variables, we first need to generate random numbers. Pseudorandom number generators (PRNGs) define a deterministic recurrence relation between $x_{n+1}$ and $x_n$ such that a sequence looks random (that's why setting the first input through \texttt{np.random.seed(x_0)} fixes the randomness of the generator).\newline
+
+
+The most popular PRNGs are:
+\begin{itemize}
+    \item Mersenne twister: through matrix multiplication and deterministic operations, it generates sequences by batches of $32$ bits (for MT19937, others choices are available), however it is fully predictable after $624$ outputs. \newline At the hardware level, this involves using a linear-feedback shift register (LFSR) with a XOR logic gate and a well-chosen feedback function (insights from group theory are useful to make a good choice here).\newline It is used as the default PRNG in Python.
+    \item PCG family: developped by Melissa O'Neill in 2014, it combines nicer \href{https://www.pcg-random.org/}{properties}. It stands for Permuted Congruential Generator. It applies a congruential operation to update the random state (the "CG" -- process from the historical first PRNGs but statistatically weak) but instead of returning it direcly as a random integer, applies a permutation function -- the "P".\newline \texttt{numpy}'s default switched to PCG64.
+    \item There exists cryptographically secure PRNGs where non-predictability is important.
+\end{itemize}
+
+
+There are batteries of statistical tests for measuring the quality of a random number generator: George Marsaglia's \href{https://en.wikipedia.org/wiki/Diehard_tests}{diehard} or L'Ecuyer's \href{https://simul.iro.umontreal.ca/testu01/tu01.html}{TestU01}.
+
+\subsubsection*{From uniform distribution to other densities}
+
+Knowning how to get "random" integers between, say $[0\mathrel{{.}\,{.}}\nobreak 2^{64}-1]$, we can shrink the output to effectively sample from $\mathcal{U}\left([0,1]\right)$.
+
+A classic way to sample from any known density is to invert its cumulative distribution function -- this is the \textit{inverse transform method}: for $X$ a random variable and $F_X$ its cdf, $U$ a standard uniform. Then, \[F_X(x) = \mathbb{P}(X \leq x) = \mathbb{P}(U \leq F_X(x)) = \mathbb{P}(F_X^{-1}(U) \leq x),\]
+thus we can sample from $X$ by sampling from $F_X^{-1}(U)$.
+
+\paragraph*{Sampling from the exponential distribution} by computing its cdf: if $X \sim \mathcal{E}(\lambda)$, $F_X(x) = 1 - e^{-\lambda x}$. Inverting it, we just need to compute $-\frac1{\lambda} \ln(1-u)$ where $u$ is a uniform sample. Moreover $U \stackrel{(d)}{=} 1-U$ so it is even more efficient to compute $-\frac1{\lambda} \ln(u)$.
+
+We have an efficient method when the cdf inverse has a closed form, and something that works numerically if we can query values of the cdf (is most of the cases, although it induces bias if the support is not finite and a choice of partition). But there are better ways to sample from popular distributions.
+
