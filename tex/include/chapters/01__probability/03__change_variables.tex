@@ -1,0 +1,46 @@
+\section{Change of variables}
+
+\begin{tcolorbox}[width=\linewidth, sharp corners=all, colback=white!95!black]
+Given $X$, $Y$, both following a standard normal distribution, compute the density of the random variable $X/Y$.
+\end{tcolorbox}
+
+This random variable is well defined as the measure of the set $\{Y = 0\}$ is $0$. The support is $\mathbb{R}$.\\
+
+We will define a $\mathcal{C}^1-$diffeomorphism that handles this transformation of the vector $(X,Y)$. Let $\phi \colon (x,y) \mapsto (x/y, y)$ such that $(u,v) = \phi(x,y).$ We will use the change of variable formula: $$f_{(U,V)}(u,v) = f_{(X,Y)}(x(u,v), y(u,v)) \lvert \operatorname{det} J_{\phi^{-1}}(u,v)\lvert.$$
+
+We have to explicit several quantities in the above formula:
+\begin{enumerate}
+    \item Expressing $x$ and $y$ as functions of $(u,v)$ :
+    $$\left\{\begin{array}{ll}
+        u &= x/y \\
+        v &= y
+    \end{array} \right.
+    \Leftrightarrow 
+    \left\{\begin{array}{ll}
+        x &= uv \\
+        y &= v.
+    \end{array}\right.$$
+    
+    Thus there exists $\phi^{-1} \colon (u,v) \mapsto (uv, v)$
+
+    \item Computing the Jacobian matrix of $\phi$ :
+    $$J_{\phi^{-1}}(u,v) = \begin{pmatrix} \dfrac{\partial \phi^{-1}_1}{\partial u} & \dfrac{\partial \phi^{-1}_1}{\partial v}\\ \dfrac{\partial \phi^{-1}_2}{\partial u} & \dfrac{\partial \phi^{-1}_2}{\partial v}\end{pmatrix} = \begin{pmatrix} v & u\\ 0 & 1\end{pmatrix}$$
+     
+    $\lvert \operatorname{det} J_{\phi^{-1}}(u,v)\lvert = v \neq 0.$\\
+    This indeed show that $\phi^{-1}$ is a $\mathcal{C}^1-$diffeomorphism.
+\end{enumerate}
+
+Back to the formula :
+
+$$f_{(U,V)}(u,v) = \frac1{2\pi} e^{-\frac{u^2v^2}{2}} e^{-\frac{v^2}{2}} \lvert v \lvert.$$
+
+We need to marginalize this joint density by integrating with respect to $v$ (on $\mathbb{R}^{*}$.
+
+\begin{align*}
+    f_U(u) &= \displaystyle \int_{\mathbb{R}^{*}} \frac1{2\pi} e^{-\frac{u^2v^2}{2}} e^{-\frac{v^2}{2}} \lvert v \lvert dv\\
+    &= \frac1{\pi} \displaystyle \int_{0}^{+\infty} v e^{-\frac{v^2}{2}(u^2+1)}\\
+    &= \frac1{\pi} \Big[-\frac1{u^2+1} e^{-\frac{v^2}{2}(u^2+1)}\Big]_{v=0}^{v = +\infty}\\
+    &= \frac1{\pi (1+u^2)}.
+\end{align*}
+
+Thus, if $X, Y \sim \mathcal{N}(0,1)$, $X/Y \sim \text{Cauchy}(0, 1).$
