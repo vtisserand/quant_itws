@@ -1,0 +1,69 @@
+\section{Estimating parameters from normal observations}
+
+\begin{tcolorbox}[width=\linewidth, sharp corners=all, colback=white!95!black]
+Suppose that you have $x_1,\dots,x_n$ observations from a normal law $X \sim \mathcal{N}(\mu, \sigma^2)$, where both parameters are unknown. Give several estimators for this set of parameters and compare them.
+\end{tcolorbox}
+
+We will compute several estimators from classic methods (MM, MLE, MAP) and analyze their behaviour.
+
+\begin{itemize}
+    \item \textbf{Method of moments : }\newline
+    By definition, the first and second order moments are equal to the parameters of the normal distribution. Thus, a natural idea is to take the empirical counterpart of these quantities :
+    
+    $$\left\{\begin{array}{ll}
+        \hat{\mu} &= \dfrac{1}{n}\sum\limits_{i=1}^n x_i\\
+        \widehat{\sigma^2} &= \dfrac{1}{n}\sum\limits_{i=1}^n (x_i - \bar{x})^2
+    \end{array}\right.$$
+    
+    We remember that the observations are identically distributed and independent. Thus, $\mathbb{E}[\hat{\mu}] = \mathbb{E}\Big[\dfrac{1}{n}\sum\limits_{i=1}^n x_i\Big] = \frac1{n} n \mathbb{E}[x_1] = \mu.$ This estimator is thus unbiased.\\
+    
+    Let's write the variance estimator a bit differently :
+    \begin{align*}
+    \sum\limits_{i=1}^n (x_i - \bar{x})^2 &= \displaystyle \sum\limits_{i=1}^n (x_i^2 -  2x_i\bar{x} + \bar{x}^2) \\
+    &= \displaystyle \sum\limits_{i=1}^n x_i^2 -  2\bar{x}\displaystyle \sum\limits_{i=1}^n + n\bar{x}^2 \\
+    &= \displaystyle \sum\limits_{i=1}^n x_i^2 -  2\bar{x}^2 + n\bar{x}^2 \\
+    &= \displaystyle \sum\limits_{i=1}^n x_i^2 -  n\bar{x}^2.
+    \end{align*}
+
+    Thus, 
+    \begin{align*}
+    \mathbb{E}[\widehat{\sigma^2}] &= \frac1{n} \mathbb{E}\Big[\displaystyle \sum\limits_{i=1}^n x_i^2 -  n\bar{x}^2 \Big] \\
+    &= \frac1{n} \mathbb{E}\Bigg[\displaystyle \sum\limits_{i=1}^n (\operatorname{Var}[x_i] + \mathbb{E}[x_i]^2) -  n (\operatorname{Var}[\bar{x}] + \mathbb{E}[\bar{x}]^2) \Bigg]\\
+    &= \frac1{n} \Big(n \sigma^2 + n\mu^2 - n \frac1{n^2} n \sigma^2 - n\mu^2 \Big)\\
+    &= \dfrac{n-1}{n} \sigma^2.
+    \end{align*}
+    
+    There is bias in the estimator of the variance. We can correct this, using \textit{Bessel's correction} : $\widehat{\sigma^2}_{corr} = \dfrac{n}{n-1} \widehat{\sigma^2}.$
+    
+    \item \textbf{Maximum likelihood estimator : }\newline
+    
+    Let's write the likelihood of this model :
+
+    \begin{align*}
+        L((x_1,\dots,x_n), \mu, \sigma^2) &= \displaystyle \prod_{i=1}^{n} f_X(x_i) \\
+        &= \displaystyle \prod_{i=1}^{n} \frac1{\sqrt{2\pi\sigma^2}} e^{-\dfrac{(x_i - \mu)^2}{2\sigma^2}}\\
+        &= \frac1{(2\pi\sigma^2)^{n/2}} \exp \Big( \displaystyle \sum\limits_{i=1}^n -\dfrac{(x_i - \mu)^2}{2\sigma^2}\Big).
+    \end{align*}
+    
+    Here, it seems clearer to work with the log-likelihood :
+    $$\ell_n((x_1,\dots,x_n), \mu, \sigma^2) = -n/2\ln(\sqrt{2\pi}) - n/2\ln(\sigma^2) - \frac1{2\sigma^2} \sum\limits_{i=1}^n (x_i - \mu)^2.$$
+    
+    And we want to solve :
+    $$(\hat{\mu}, \widehat{\sigma^2}) \in \operatorname{argmax}_{(\mu, \sigma^2) \in \mathbb{R} \times \mathbb{R}^{+}} \ell_n((x_1,\dots,x_n), \mu, \sigma^2).$$
+    
+    
+    $$\left\{\begin{array}{ll}
+        \dfrac{\partial \ell_n}{\partial \mu} &= 0 \\
+        \dfrac{\partial \ell_n}{\partial \sigma^2} &= 0
+    \end{array}\right. \Leftrightarrow 
+    \left\{\begin{array}{ll}
+        \frac1{\sigma^2}\sum_i (x_i - \mu) &= 0 \\
+        -\dfrac{n}{2\sigma^2} + \frac1{2(\sigma^2)^2}\sum_i (x_i - \mu)^2 &= 0
+    \end{array}\right. \Leftrightarrow 
+    \left\{\begin{array}{ll}
+        \hat{\mu} &= \frac1{n}\sum_i x_i \\
+        \widehat{\sigma^2} &= \frac1{n}\sum_i (x_i - \mu)^2
+    \end{array}\right.$$
+    
+    We end up on the same estimators as given by the method of moments.
+\end{itemize}
