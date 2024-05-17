@@ -13,7 +13,7 @@ is going to be your first command to get your local version of the remote reposi
 
 Then you're going to add features to the current library, for instance implement this fancy stochastic volatility model you've heard about. There is the \texttt{main} or \texttt{master} branch that everyone takes as reference, and you'll want to create your changes on a parallel version to not interfere. Instead of using \texttt{git branch} to create your own branch, you can directly go with:\newline
 \texttt{git checkout -b \$BRANCH_NAME}\newline
-Now you can start adding / modifying files. Switch between branches with \texttt{git switch} and toggle between the current and the last seen with \texttt{git checkout -}.
+Now you can start adding / modifying files. Switch between branches with \texttt{git switch} and toggle between the current and the last seen with \texttt{git checkout -}. Check the state of the modified files with \texttt{git status} (and add the \texttt{-s} flag for a shorter summary).
 
 A nice routine to add, commit and push modifications is:\newline
 \texttt{git add .}\newline
@@ -24,7 +24,7 @@ A good commit meassage should look like \texttt{feat: fast pricing for heston mo
 
 To stay on top of the modifications of your colleagues and avoid conflicts, keep regularly pulling the latest changes:\newline
 \texttt{git pull origin master}\newline
-which is a shortcut for \texttt{git fetch origin} and \texttt{git merge}.
+which is a shortcut for \texttt{git fetch origin} and \texttt{git merge}. Careful with pulling though, as each time it creates a merge commit and can make it hard to navigate the commit history; try rebasing (more on that later, with \texttt{git pull --rebase}).
 
 \texttt{git log} is useful to show an history of the commits, with messages and commit references. A better log can be seen with:\newline
 \texttt{git log --pretty=oneline --abbrev-commit --graph --decorate --all}
@@ -43,7 +43,15 @@ D---E---F---G   master           D---E---F---G   master
 \end{verbatim}
 \end{center}
 
+This is what we were talking about, advocating for \texttt{git pull --rebase} instead of \texttt{git pull} that adds a merge commit. In case of a merge conflict, use \texttt{git rebase --abort}, pull normally and solve it.
+
 \texttt{git cherry-pick <commit>} applies the changes of a commit.
 
 
 \subsection*{Advanced}
+
+\subsection*{My aliases}
+
+Some of the above commands can be long to type, here is a list of aliases I use for a smoother workflow:
+
+\texttt{git config --global alias.pr "pull --rebase"}
