@@ -1,0 +1,29 @@
+\subsection{Queueing theory: M/M/1/K}
+
+\begin{tcolorbox}[width=\linewidth, sharp corners=all, colback=white!95!black]
+We are considering a store with capacity $K$ where there is $1$ employee that fulfills the needs of each client in a random memoryless time (that is each customer stay follows an $\mathcal{E}(\mu)$) and customers arrive through the front door as a $\mathcal{P}(\lambda)$ process. Find the expected number of people in the store.
+\end{tcolorbox}
+
+With Kendall's notation, this is a M/M/1/K problem.
+
+We are interested in the stationary distribution. Let $p_{t,k}$ denote the probability to be in state $k$ at time $t$. For $1\le k \le K$, we write the differential of this probability as "the entrance flow minus the exit flow":
+$$dp_{t,k} = \lambda p_{t-1,k} + \mu p_{t+1,k} - (\lambda+\mu) p_{t,k}.$$
+
+The equilibrium is such that these probabilities do not move. With the initialization and $\rho = \dfrac{\lambda}{\mu},$ $\pi_1 = \rho\pi_0$, then for each $1\le i \le K$, $\pi_i = \rho^{i} \pi_0$.\\
+We have $\sum_{i=0}^K \pi_i = 1 = \dfrac{1-\rho^{K+1}}{1-\rho}\pi_0.$
+
+Thus, for each $0\le i \le K$, $$\pi_i = \dfrac{\rho^{i}(1-\rho)}{1-\rho^{K+1}}.$$
+
+We may now calculate the expectancy of the number of people in the store: 
+
+\begin{align*}
+    \mathbb{E}[L] &= \displaystyle \sum_{i=0}^K i \pi_i\\
+    &= \displaystyle \sum_{i=1}^K i \dfrac{\rho^{i}(1-\rho)}{1-\rho^{K+1}}\\
+    &= \dfrac{(1-\rho)}{1-\rho^{K+1}} \frac1{\rho} \left(\dfrac{(1-\rho^{K+1})}{1-\rho}\right)^{'}\\
+    &= \dfrac{(1-\rho)}{1-\rho^{K+1}} \frac1{\rho} \dfrac{(1-\rho)(-(K+1)\rho^K) + (1-\rho^{K+1})}{(1-\rho)^2}\\
+    &= \dfrac{\rho(1-(K+1)\rho^K+K\rho^{K+1})}{(1-\rho)(1-\rho^{K+1})}
+\end{align*}
+
+Which gives $$\mathbb{E}[L] = \dfrac\rho{1-\rho}-\frac{(K+1)\rho^{K+1}}{1-\rho^{K+1}}.$$
+
+That is the expectancy where the store has an infinite capacity, minus a term depending on the capacity.
