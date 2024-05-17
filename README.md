@@ -28,6 +28,9 @@ Not really what you can expect in every job interview, just a compilation of int
 
 - [ ] Varswaps, their replication and some thoughts about tail-hedging
 - [ ] Correlation-based products and dispersion trading: [dual-digitals and worst-of](https://quantnet.com/threads/dual-digital-and-worst-of-basket-options.20660/), [discussion](https://quant.stackexchange.com/questions/75024/how-to-hedge-a-dual-digital-option)
+- [ ] Vol drag in leveraged ETFs [ex](https://www.returnstacked.com/return-stacking-and-volatility-drag/?utm_campaign=Oktopost-Return+Stacked+Content)
+- [ ] Pricing a cliquet with change of numeraire
+- [ ] PnL attribution for options, O. Daviaud
 
 **Computer science**
 
