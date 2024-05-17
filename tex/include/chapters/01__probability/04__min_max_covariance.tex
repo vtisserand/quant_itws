@@ -1,0 +1,64 @@
+\section{Min and max covariance}
+
+\begin{tcolorbox}[width=\linewidth, sharp corners=all, colback=white!95!black]
+Let $U_i \sim \mathcal{U}[0,\theta]$ for $i \in \{1,\dots,n\}.$ If $M = \max_{1\leq i \leq n} U_i$ and $m = \min_{1\leq i \leq n} U_i$, find $\operatorname{Cov}(M,m)$.
+\end{tcolorbox}
+
+There is no reason for these variables to be uncorrelated: the maximum depends on the value of the minimum; for instance it cannot be below.\\
+
+We have to compute the densities for the max, the min and the joint distribution. To get them, we use the cumulative distribution functions. For $x \in [0,1]$ : 
+
+\begin{align*}
+    \mathbb{P}(M \le x) &= \mathbb{P}\left(\bigcap_{i=1}^{n} {U_i \le x}\right)\\
+    &= \prod_{i=1}^{n} \mathbb{P}(U_i \le x)\\
+    &= x^n.
+\end{align*}
+
+and
+
+\begin{align*}
+    \mathbb{P}(m \le x) &= 1 - \mathbb{P}(m > x)\\
+    &= 1 - \mathbb{P}\left(\bigcap_{i=1}^{n} {U_i > x}\right)\\
+    &= 1 - \prod_{i=1}^{n} (1- \mathbb{P}(U_i > x))\\
+    &= 1 - (1 - x)^n.
+\end{align*}
+
+Taking the derivatives of these continuous cdfs, we have :
+
+$$f_M(x) = n x^{n-1} \mathbbm{1}_{[0, 1]}(x) \quad \text{and} \quad f_m(x) = n (1 - x)^{n-1} \mathbbm{1}_{[0, 1]}(x).$$
+
+For the joint density, the set we are looking for is a bit trickier : for $0\le y < x \le 1$, we partition the event $\{M\le x\}$ on the disjointed events $\{m\le y\}$ and $\{m > y\}$: 
+
+\begin{align*}
+\mathbb{P}(M\le x,m\le y)&=\mathbb{P}(M\le x)-\mathbb{P}(m>y,M\le x) \\
+&=\mathbb{P}\left(\bigcap_{1\le i\le n}(U_i\le x)\right)-\mathbb{P}\left(\bigcap_{1\le i\le n}(y<U_i\le x)\right) \\
+&=x^n-(x-y)^n.
+\end{align*}
+
+End by deriving with respect to $x$ and $y$ :
+
+$$f_{(M,m)}(x, y) = n (n-1) (x-y)^{n-2} \mathbbm{1}_{0\le y < x \le 1}(x, y).$$
+
+We check that this density corresponds to a probability measure by integrating it.\\
+
+(We actually do not need to change this joint density with $\mathcal{C}^1$-diffeomorphism and the change of variable theorem.)\\
+
+With
+
+\begin{align*}
+  \phi \colon 
+  (x,y) &\mapsto xy.
+\end{align*}
+
+$$\mathbb{E}[\phi(M,m)] = \displaystyle \int_{\mathbb{R}} \displaystyle \int_{\mathbb{R}} \phi(x,y)f_{(M,m)}(x, y) dy dx.$$
+
+Using integration by parts for the inner integral : 
+\begin{align*}
+\mathbb{E}[\phi(M,m)] &= \displaystyle \int_0^1 \displaystyle \int_0^x xy n (n-1) (x-y)^{n-2} dy dx \\
+&= n (n-1) \displaystyle \int_0^1 \frac1{n(n-1)} x^n dx\\
+&=\frac1{n+2}.
+\end{align*}
+
+Finally, $$\operatorname{Cov}(M,n) = \mathbb{E}[Mm] - \mathbb{E}[M] \mathbb{E}[m] = \frac1{n+2} - \dfrac{n}{(n+1)^2}.$$
+
+We have a covariance that decreases to zero as $n$ goes to infinity.
