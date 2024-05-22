@@ -1,0 +1,16 @@
+\section{Options P\&L attribution}
+
+\begin{tcolorbox}[width=\linewidth, sharp corners=all, colback=white!95!black]
+    How would you break down the profits and losses of an options portfolio?
+\end{tcolorbox}
+
+For short time horizon, the canonical method is the so-called Greeks decomposition, which splits P\&L across the various derivatives of the Black-Scholes formula. This decomposition highlights contributions that come from the passage of time versus that which comes from changes in market variables.
+
+Denoting the portfolio $\Pi$ as a function of time $t$, spot level $S$ and volatility $\sigma$, an application of It\^o's formula (read stochastic Taylor expansion) yields, assuming the portfolio is composed of a single call option $C$:
+
+\begin{align*}
+    d\Pi(t, S, \sigma) &= \overbrace{\dfrac{\partial C}{\partial t}}^{\text{theta } \Theta}dt + \underbrace{\dfrac{\partial C}{\partial S}}_{\text{delta } \Delta}dS +  \frac1{2}\overbrace{\dfrac{\partial^2 C}{\partial S^2}}^{\text{gamma } \Gamma}d\langle S \rangle + \frac1{2}\underbrace{\dfrac{\partial^2 C}{\partial \sigma^2}}_{\text{volga}} d\langle \sigma \rangle + \overbrace{\dfrac{\partial^2 C}{ \partial S \partial \sigma}}^{\text{vanna}} d\langle S, \sigma \rangle\\
+    &= \dfrac{\partial C}{\partial t}dt + \dfrac{\partial C}{\partial S}dS +  \overbrace{\frac1{2} S^2 \sigma^2 \dfrac{\partial^2 C}{\partial S^2}}^{\text{gamma P\&L}} dS^2 + \frac1{2}\dfrac{\partial^2 C}{\partial \sigma^2} d\sigma^2 + \dfrac{\partial^2 C}{ \partial S \partial \sigma} dS d\sigma.
+\end{align*}
+
+This framework gives daily P\&L breakdown that can be summed to explain longer term P\&L.
