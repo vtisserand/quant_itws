@@ -1,4 +1,4 @@
-\section{Betting on volatility -- around varswaps}
+\section{Around variance swaps}
 
 \begin{tcolorbox}[width=\linewidth, sharp corners=all, colback=white!95!black]
     A desk is interested in expressing a view on volatility. To do so they suggest entering a variance swap contract with payoff:
@@ -43,8 +43,12 @@ While varswaps give constant dollar Gamma ($\$\Gamma$) exposure, one might want 
 
 here the correct choice would be $f: x \mapsto x\log x - x$, which indeed yields the variable leg $\int_{0}^{T} \frac{S_t}{S_0} \sigma_t^2 dt$.
 
-There exists some other flavours of swaps: corridor swaps, entropy swaps, correlation swaps, \textit{etc.} Volswaps are not really a thing as they cannot be statically replicated by a portfolio of options.
+There exists some other flavours of swaps: corridor swaps, entropy swaps\footnote{Check out Hans Buehler's \href{https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1118245}{thesis}.}, correlation swaps, \textit{etc.} Volswaps are not really a thing as they cannot be statically replicated by a portfolio of options.
 
 \subsubsection*{Extracting the forward variance curve}
 
-Forward variance curve $\xi_0(\cdot)$ should be extracted from variance swap replication as a piece-wise constant c\`adl\`ag function, where each next level is built thanks to the SVI interpolation of the strip of calls and puts prices. The quantity $\xi_t(u)$ is the instantaneous variance at time $u > t$ seen from $t$.
+Forward variance curve $\xi_0(\cdot)$ should be extracted from variance swap replication as a piece-wise constant c\`adl\`ag function, where each next level is built thanks to the SVI interpolation of the strip of calls and puts prices. The quantity $\xi_t(u)$ is the instantaneous variance at time $u > t$ seen from $t$.\newline Having extracted forward variance curve values $\xi_i$ at time $T_i$ for ${0\leq i \leq n}$, we can 
+\begin{itemize}
+    \item built a piece-wise constant curve between $[T_i, T_{i+1})$ such that $\xi_0(t) = \sum_{i=1}^n \xi_i \mathbbm{1}_{t \in [T_i, T_{i+1})}$, 
+    \item or decide to run a cubic spline interpolation with knots $(t_i, x_i)$ with $t_i = (T_i + T_{i+1})/2$ and $x_i = \sqrt{\int_{T_i}^{T_{i+1}} \xi_0(s)ds}$ and then square the interpolation to ensure positivity of the forward variance curve \cite{jaber2022quintic}.
+\end{itemize}
