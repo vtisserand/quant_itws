@@ -4,3 +4,10 @@
 What are cliquet options? Which exposure do they give? How to price them?
 \end{tcolorbox}
 
+Cliquets (or ratchets) are a kind of exotic options consisting in a series of forward starting options. It can be seen as a sequence of pre-purchased ATM options which become active in turn consecutively. The strikes of the options are not known at inception of the product and are resetted when the new option becomes active.\newline Such a structure is motivated by the insurance sector and the selling to retail investors of annuities (think fixed index annuities for retirement schemes). These contracts offer downside protection while maintaining potential upside thus have become popular post-crisis. \newline It is highly sensitive to future implied volatility and ATM forward skew, thus the need for a model that catches those dynamics correctly\footnote{Stochastic volatility models that specify dynamics for the entire forward variance curve rather than only the instantaneous variance are thus preferred, \textit{e.g.} Bergomi one and two-factor models \cite{bergomi2004smile, bergomi2005smile}, where the skew can even be part of the error function in the calibration to ensure its dynamics are well caught.}.
+
+Below we highlight pricing schemes for cliquet-style options (that includes accumulators, reverse cliquets and Napoleons).
+
+\subsubsection*{Change of num\'eraire}
+
+Change of num\'eraire methods are very powerful when introducing stochastic rates in modelling -- typically when pricing and hedging interest rates derivatives. 
