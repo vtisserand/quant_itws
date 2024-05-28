@@ -4,10 +4,21 @@
 What are cliquet options? Which exposure do they give? How to price them?
 \end{tcolorbox}
 
-Cliquets (or ratchets) are a kind of exotic options consisting in a series of forward starting options. It can be seen as a sequence of pre-purchased ATM options which become active in turn consecutively. The strikes of the options are not known at inception of the product and are resetted when the new option becomes active.\newline Such a structure is motivated by the insurance sector and the selling to retail investors of annuities (think fixed index annuities for retirement schemes). These contracts offer downside protection while maintaining potential upside thus have become popular post-crisis. \newline It is highly sensitive to future implied volatility and ATM forward skew, thus the need for a model that catches those dynamics correctly\footnote{Stochastic volatility models that specify dynamics for the entire forward variance curve rather than only the instantaneous variance are thus preferred, \textit{e.g.} Bergomi one and two-factor models \cite{bergomi2004smile, bergomi2005smile}, where the skew can even be part of the error function in the calibration to ensure its dynamics are well caught.}.
+Cliquets -- we restrict ourselves to simple ratchets -- are a kind of exotic options consisting in a series of forward starting options. It can be seen as a sequence of pre-purchased ATM options which become active in turn consecutively. The strikes of the options are not known at inception of the product and are resetted when the new option becomes active.\newline Such a structure is motivated by the insurance sector and the selling to retail investors of annuities (think fixed index annuities for retirement schemes). These contracts offer downside protection while maintaining potential upside thus have become popular post-crisis. \newline It is highly sensitive to future implied volatility and ATM forward skew, thus the need for a model that catches those dynamics correctly\footnote{Stochastic volatility models that specify dynamics for the entire forward variance curve rather than only the instantaneous variance are thus preferred, \textit{e.g.} Bergomi one and two-factor models \cite{bergomi2004smile, bergomi2005smile}, where the skew can even be part of the error function in the calibration to ensure its dynamics are well caught.}.
 
 Below we highlight pricing schemes for cliquet-style options (that includes accumulators, reverse cliquets and Napoleons).
 
-\subsubsection*{Change of num\'eraire}
+\subsubsection*{The change of num\'eraire method}
 
 Change of num\'eraire methods are very powerful when introducing stochastic rates in modelling -- typically when pricing and hedging interest rates derivatives. 
+
+\subsubsection*{Forward start option}
+
+Let $t < T$, $\theta>0$, with $t$ the current time at which we want to price the payoff \[(S_{T + \theta} - KS_{T})^{+}\] paid in $T+\theta$.
+
+\subsubsection*{In practise: which is the best model to price cliquets?}
+
+For payoffs with path-dependent features, capturing the volality surface evolution is crucial. Typically, stochastic volatility models are to be preferred to local volatility models to capture dynamics, as the latter assume deterministic changes in the volatility (with regards to the underlying price and time). \newline LV is a static model calibrated on today's vol surface: it will produce much flatter forward smiles. The whole dynamic comes from the volatility surface at time $t$, which is too strong of an assumption to replicate accurate surface behaviour. Thus LV will tend to underprice the option as it underestimates the persistence of the forward skew.
+% as forward skew decays as $\tau^{-1/2}$ in this model while --truncated -- powerlaw decay with an exponent lesser than $1/2$ is generally observed.
+
+One may be looking at LSV models to compensate drawbacks of simple LV.
