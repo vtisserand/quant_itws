@@ -46,7 +46,7 @@ where $\phi, \psi$ are the solutions of Riccati equations -- this allows for tra
     \[\mathcal{A} = rS \dfrac{\partial}{\partial S} + \kappa(\theta - V) \dfrac{\partial}{\partial V} + \rho \sigma S V \dfrac{\partial^2}{\partial S \partial V} + \dfrac1{2} V S^2 \dfrac{\partial^2}{\partial S^2} + \dfrac1{2} \sigma^2 V \dfrac{\partial^2}{\partial V^2}.\]
 
 
-    with $r = \mu - \frac1{2}\sigma^2$ for switching from the statistical measure to the risk-neutral measure. A financial construction, applying It\^o to an hedged portfolio leads to the same PDE.
+    with $r = \mu - \frac1{2}\sigma^2$ for switching from the statistical measure to the risk-neutral measure. A financial construction, applying It\^o to an hedged portfolio leads to the same pricing PDE.
 
 
     Then we make an \underline{\textit{ansatz}} for the solution: we assume it looks like \[C(S_t, V_t, t, T) = S_t P_1 - K e^{-r(T-t)} P_2\footnote{This is not a surprise when we know Black-Scholes formula for vanillas. Financial practitioners can read these quantities as in-the-money probabilities: $P_1 = \mathbb{Q}^S(S_T > K), P_2 = \mathbb{Q}(S_T > K)$, with the probability measures under different numeraires.}.\]

@@ -10,15 +10,27 @@ Below we highlight pricing schemes for cliquet-style options (that includes accu
 
 \subsubsection*{The change of num\'eraire method}
 
-Change of num\'eraire methods are very powerful when introducing stochastic rates in modelling -- typically when pricing and hedging interest rates derivatives. 
+Change of num\'eraire methods are very powerful when introducing stochastic rates in modelling -- typically when pricing and hedging interest rates derivatives.
+
+Let $X_T$ be the payoff of a contingent claim maturing at time $T$ (\textit{e.g.} $(S_T-K)^{+}$ for a vanilla call). We suppose we are at time $t$. 
+According to the risk-neutral valuation principle, the $t$-price of this contract (under the risk-neutral measure $\mathbb{Q}$) is: \[X_t = \mathbb{E}_t\left[e^{-\int_t^T r_s ds} X_T\right].\]
+This can be resolved when the rate is deterministic, taking the actualisation term out of the expectancy, but requires more work when the rate process is stochastic. \newline Let's define the \textit{forward measure} $\mathbb{Q}^{T}$ associated with the \textit{num\'eraire} $B(t,T)$ through the Radon-Nikodym derivative: \[\dfrac{d\mathbb{Q}^{T}}{d \mathbb{Q}}\bigg|_{\mathcal{F}_t} = \dfrac{B(T,T)}{B(t,T)} = Z_t.\]% \times \dfrac{e^{-\int_t^T r_s ds}}{e^{-\int_t^t r_s ds}} = \dfrac{e^{-\int_t^T r_s ds}}{B(t,T)} = Z_t.\]
+
+Then, using Bayes rule for conditional expectation,
+\begin{align*}
+    \mathbb{E}_t\left[e^{-\int_t^T r_s ds} X_T\right] &= \mathbb{E}_t\left[\frac{B(t,T)}{B(T,T)} X_T \right]\\
+    &= \frac{1}{Z_t} \times Z_t \mathbb{E}_t^{\mathbb{Q}}\left[\frac{1}{Z_t} X_T \right]\\
+    &= \frac{1}{Z_t} \mathbb{E}_t^{\mathbb{Q}^{T}}\left[X_T \right]\\
+    &= B(t,T) \mathbb{E}_t^{\mathbb{Q}^{T}}\left[X_T \right].
+\end{align*}
+
 
 \subsubsection*{Forward start option}
 
-Let $t < T$, $\theta>0$, with $t$ the current time at which we want to price the payoff \[(S_{T + \theta} - KS_{T})^{+}\] paid in $T+\theta$.
+Let $t < T$ and $\theta>0$, with $t$ the current time at which we want to price the payoff \[(S_{T + \theta} - KS_{T})^{+}\] paid in $T+\theta$.
 
 \subsubsection*{In practise: which is the best model to price cliquets?}
 
-For payoffs with path-dependent features, capturing the volality surface evolution is crucial. Typically, stochastic volatility models are to be preferred to local volatility models to capture dynamics, as the latter assume deterministic changes in the volatility (with regards to the underlying price and time). \newline LV is a static model calibrated on today's vol surface: it will produce much flatter forward smiles. The whole dynamic comes from the volatility surface at time $t$, which is too strong of an assumption to replicate accurate surface behaviour. Thus LV will tend to underprice the option as it underestimates the persistence of the forward skew.
-% as forward skew decays as $\tau^{-1/2}$ in this model while --truncated -- powerlaw decay with an exponent lesser than $1/2$ is generally observed.
+For payoffs with path-dependent features, capturing the volality surface evolution is crucial. Typically, stochastic volatility models are to be preferred to local volatility models to capture dynamics, as the latter assume deterministic changes in the volatility (with regards to the underlying price and time). \newline LV is a static model calibrated on today's vol surface: it will produce much flatter forward smiles. The whole dynamic comes from the volatility surface at time $t$, which is too strong of an assumption to replicate accurate surface behaviour. Thus LV will tend to underprice the option as it underestimates the persistence of the forward skew.\newline As a rule-of-thumb, forward skew decays as $\tau^{-1/2}$ in this model \cite{lee2005implied} while we generally observe a powerlaw decay with an exponent lesser than $1/2$ for ATM skew\footnote{We observe a more persistent ATM skew decay: $\mathcal{S}_T \propto T^{-1/2 + H}, \quad H \in (0, 1/2)$, see the interest of rough models \cite{fukasawa2017short} and considerations about explosions in the very short term \cite{guyon2022does}.}.
 
 One may be looking at LSV models to compensate drawbacks of simple LV.
