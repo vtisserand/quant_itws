@@ -3,3 +3,66 @@
 \begin{tcolorbox}[width=\linewidth, sharp corners=all, colback=white!95!black]
     Explain the principle of automatic differentiation, and highlight example use in finance and machine learning.
 \end{tcolorbox}
+
+When given a function, there are severl ways of computing its derivative:
+
+\begin{itemize}
+    \item \textbf{Numerical differentiation} makes use finite differences to get an approximation at a given point $x$ according to $f'(x) \approx \dfrac{f(x+h) - f(x-h)}{2h}$,
+    \item \textbf{Symbolic differentiation} manipulates the mathematical expression of the function to get a plug-in formula for the derivative, relying on chain rule (and simplifying the resulting expression that can get quite lengthy) -- this is the process we are taught in school,
+    \item \textbf{Automatic differentiation}
+\end{itemize}
+
+The key data structure in automatic differentiation (AD or AAD for adjoint algorithmic differentiation) is a directed acyclic graph (DAG). Given a mathematical expression, we can break it down into elementary operations.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[node distance=2cm and 1.5cm, auto, 
+    every node/.style={circle, draw, thick, minimum size=1cm, fill=white, font=\normalsize}]
+
+    % Nodes
+    \node (product) at (0,6) {$\times$};
+    \node (sin) [below left of=product] {$\sin$};
+    \node (cos) [below right of=product] {$\cos$};
+    \node (sum) [below of=product, yshift=-2cm] {$+$};
+    \node (x1) [below left of=sum] {$x_1$};
+    \node (x2) [below right of=sum] {$x_2$};
+
+    % Edges (Forward Mode)
+    \path[->, draw=black, thick, >={Stealth[black]}] (sum) edge (sin);
+    \path[->, draw=black, thick, >={Stealth[black]}] (sum) edge (cos);
+    \path[->, draw=black, thick, >={Stealth[black]}] (sin) edge (product);
+    \path[->, draw=black, thick, >={Stealth[black]}] (cos) edge (product);
+    \path[->, draw=black, thick, >={Stealth[black]}] (x1) edge (sum);
+    \path[->, draw=black, thick, >={Stealth[black]}] (x2) edge (sum);
+
+    % Edges (Reverse Mode)
+    \path[->, draw=red, thick, >={Stealth[red]}, bend right=30] (sin) edge (sum);
+    \path[->, draw=red, thick, >={Stealth[red]}, bend left=30] (cos) edge (sum);
+    \path[->, draw=red, thick, >={Stealth[red]}, bend right=30] (product) edge (sin);
+    \path[->, draw=red, thick, >={Stealth[red]}, bend left=30] (product) edge (cos);
+    \path[->, draw=red, thick, >={Stealth[red]}, bend right=30] (sum) edge (x1);
+    \path[->, draw=red, thick, >={Stealth[red]}, bend left=30] (sum) edge (x2);
+
+\end{tikzpicture}
+\caption{Expression DAG for $f: (x_1, x_2) \mapsto \cos(x_1+x_2)\sin(x_1+x_2)$.}
+\end{figure}
+
+Each real number in this flow graph is actually a dual: the value and its gradient. To get the latter, we compute the Jacobian matrix of the primitive operation at the value point (in a vectorized manner). This is the \textit{Jacobian-vector product} step (jvp). And that's it: the accumulation of these primitive operations allow for the computation of the gradient at a given point. \newline Or rather that's it for \textit{forward-mode} AD. Most of the times, we are trying to differentiate a function $f: \mathbb{R}^n \rightarrow \mathbb{R}$, where $n$ can be large (think of a neural network with a lot of features as inputs and a single loss value at the end). We can switch to \textit{reverse-mode} AD where the dual $(\text{value}, \text{gradient})$ gets propagated backwards -- red arrows on the example DAG. We are now doing a \textit{vector-Jacobian product} (vjp).
+
+Let's break down $f$ into elementary functions $f_i$ and store the intermediate results $x_i$. Then, for $i = 1,\dots,n, x_i = f_i(x_1, \dots, x_{i-1})$ and we can compute the adjoint\footnote{AAD uses adjoints rather tha tangents.} with the chain rule: \[\overline{x_i} = \dfrac{\partial x_n}{\partial x_i} = \sum_{j=i+1}^n \dfrac{\partial x_n}{\partial x_j} \dfrac{\partial f_j}{\partial x_i} = \sum_{j=i+1}^n \overline{x_j} \dfrac{\partial f_j}{\partial x_i},\]
+
+where the previous adjoints have already been computed.
+
+\paragraph*{Financial applications:}
+
+AAD is used in the financial industry to compute sensitivity of a portfolio exposure\footnote{See the standardised approach highlighted in BIS's \href{https://www.bis.org/bcbs/publ/d457.pdf}{Minimum capital requirements for Market Risk} for the Basel framework.}, or calibrate a model to market data (and actually whenever numerical minimization is involved).\newline While finite differences work up to a certain scale, AAD alleviates the need to write bespoke code for each new traded product and can save on computational cost. \cite{geeraert2017mini} clearly highlights the underlying motivation behing such a framework to keep up with regulatory demand. XVA computations involving nested Monte Carlo simulations can also be considerably sped up switching to AD.
+
+When trying to find the optimal parameter for a model (\textit{e.g.} the SABR parameters to fit the SPX smile) the objective function often is a variation of mean square error. Brent or Levenberg-Marquardt are popular methods there.
+
+In finance, second-order sensitivities can be harder, as vanilla payoff are not twice differentiable\footnote{Sometimes practitioners rely on a smooth approximation of the Heaviside step function to bypass the difficulties of a discrete function. Tons of approximations \href{https://github.com/norse/norse/blob/main/norse/torch/functional/threshold.py}{here}.}. Thus, for higher order sensitivities, AD can be refined to outperform (complex) finite differences and Malliavin calculus.
+
+\paragraph*{Machine learning applications:}
+
+The main reason behind the popularity of ML frameworks -- beside the convenience of writing an entire neural network in a snippet of a few lines of code -- resides in their handling of gradient computation through automatic differentiation to efficiently minimize loss functions.
+
+To zoom into these areas of the libraries, one can have a look at projects like \href{https://github.com/HIPS/autograd}{\texttt{autograd}} that automatically differentiate native \texttt{numpy} code, or Karpathy's \href{https://github.com/karpathy/micrograd}{\texttt{micrograd}}.
