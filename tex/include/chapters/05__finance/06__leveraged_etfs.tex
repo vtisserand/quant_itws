@@ -11,3 +11,16 @@ Let's say we want to offer a "$2\times$ AAPL" product to our clients. This excha
 Let's consider the ETP has a NAV of $A_n$ at time $t_n$. The notional of the total return swaps required is $L_n = x A_n$. With a daily rebalancing, at the end of the day the TRS exposure is $x A_n (1+r_{n+1})$ while the fund's NAV grew to $x A_n (1+xr_{n+1})$. To account for this disparity, the exposure to the TRS has to be adjsuted by $\Delta_n = A_n (x^2-x) r_{n+1}$.
 
 \paragraph*{Volatility drag} is the difference between summed and compounded returns: it is harder to recover from a much lower starting point. Indeed, while we need a $20\%$ drop to go from $\$100$ to $\$80$, we need $25\%$ to make it back to $\$100$, and $-20\%+25\% \neq 0$.\newline This is referred to as vol drag, vol tax, or even variance drain.
+
+If we consider a series of fair coin flips where, starting at $\$100$ you bet one percent of your bankroll, double your bet on heads and lose it on tails, with $v_n=100\times 0.99^{n} \times 1.01^n$, you'd have $\forall n \in \mathbb{N}^{*} v_n < 100$ and $\lim_{n \to +\infty} v_n = 0$.
+
+\begin{figure}[H]
+    \includegraphics[width=0.85\textwidth]{include/img/coin_flip_drag.png}
+    \centering
+    \caption{Wealth after $n$ coin flips, with the drag trend. See \href{https://github.com/vtisserand/quant_itws/tree/main/code/snippet/coin_flip_drag.py}{code snippet}.}
+    \label{fig:coin_flip_drag}
+\end{figure}
+
+Are all leveraged ETFs doomed to ruin though? No, but they appear not suited for long term investors as only a positively skewed return distribution could compensate the effect of the drag.
+
+We can quantity the difference between arithmetic and geometric returns: $r_g \approx r_a - \sigma^2/2$. This applies to all assets, however leveraged products can only amplify this phenomenon and the $2\times$ AAPL product would come with quadruple the volatility drag of owning shares spot, with manager fees.

@@ -1,0 +1,38 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.16}
+
+\begin{document}
+
+\begin{tikzpicture}
+    \begin{axis}[
+        xmin=-2, xmax=2,
+        ymin=-2, ymax=2,
+        axis equal image,
+        axis lines=middle,
+        xlabel=$X$,
+        ylabel=$Y$,
+        x label style={at={(axis description cs:1,0.57)}, anchor=north},
+        y label style={at={(axis description cs:0.57,1)}, anchor=east},
+        width=10cm, % Adjust the width of the plot
+        height=10cm, % Adjust the height of the plot
+        colormap={whiteblack}{gray(0cm)=(1); gray(1cm)=(0.7)},
+        view={0}{90}
+    ]
+        \addplot3[
+            contour gnuplot={
+                number=10, % Increase the number of contour levels
+                labels=false,
+                draw color=black!50, % Change the contour line color
+            },
+            samples=100, % Increase the number of samples for smoother contours
+            domain=-3:3,
+        ]{exp(-(x^2+y^2-2*0.7*x*y)/(2*(1-0.7^2)))/(2*pi*(1-0.7^2))}; % \rho=0.7
+
+        % Eigenvectors and Eigenvalues
+        \draw[->, ultra thick, grey!50] (0,0) -- (1.3,1.3) node[very near end, below=6pt, right=2pt] {$\sqrt{1+\rho}$};
+        \draw[->, ultra thick, grey!70] (0,0) -- (0.55,-0.55) node[very near end, below=9pt] {$\sqrt{1-\rho}$};
+    \end{axis}
+\end{tikzpicture}
+
+\end{document}
