@@ -1,0 +1,13 @@
+\section{Leveraged ETFs and volatility drag}
+
+\begin{tcolorbox}[width=\linewidth, sharp corners=all, colback=white!95!black]
+How would an asset manager build and manage a leveraged ETF? How to cope with volatility drag?
+\end{tcolorbox}
+
+Let's say we want to offer a "$2\times$ AAPL" product to our clients. This exchange-traded product should replicate the daily performance of two times the one of the underlying common Apple stock.
+
+\paragraph*{Product design:} Two instruments can be used on top of the udnerlying to deliver a leveraged performance: total return swaps and futures. Following \cite{cheng2009dynamics}, let $S_t$ be the price of one Apple share at time $t$, and $r_i$ be the return of the underlying between $t_{i-1}$ and $t_i$: $r_i = \dfrac{S_{t_{i}}}{S_{t_{i-1}}} - 1$. $r_{i\colon j}$ will denote the return between times $t_i$ and $t_j$. We will denote $x$ the leveraged multiple, which usually takes values in $\{-2, -1, 2, 3\}$.\newline There is a path-dependency in the delivered returns, as the compounded move has no reason to be the same as the multipled return: \[\prod_{i=1}^N (1+xr_i) \neq (1+xr_{0\colon N}).\]
+
+Let's consider the ETP has a NAV of $A_n$ at time $t_n$. The notional of the total return swaps required is $L_n = x A_n$. With a daily rebalancing, at the end of the day the TRS exposure is $x A_n (1+r_{n+1})$ while the fund's NAV grew to $x A_n (1+xr_{n+1})$. To account for this disparity, the exposure to the TRS has to be adjsuted by $\Delta_n = A_n (x^2-x) r_{n+1}$.
+
+\paragraph*{Volatility drag} is the difference between summed and compounded returns: it is harder to recover from a much lower starting point. Indeed, while we need a $20\%$ drop to go from $\$100$ to $\$80$, we need $25\%$ to make it back to $\$100$, and $-20\%+25\% \neq 0$.\newline This is referred to as vol drag, vol tax, or even variance drain.

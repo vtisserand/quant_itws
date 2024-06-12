@@ -1,0 +1,436 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{ynt/global//global/global}
+    \entry{gil1951note}{article}{}
+      \name{author}{1}{}{%
+        {{hash=cceeb638e697ccdfb7db15ac1e799dcb}{%
+           family={Gil-Pelaez},
+           familyi={G\bibinithyphendelim P\bibinitperiod},
+           given={J},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Oxford University Press}%
+      }
+      \strng{namehash}{cceeb638e697ccdfb7db15ac1e799dcb}
+      \strng{fullhash}{cceeb638e697ccdfb7db15ac1e799dcb}
+      \strng{bibnamehash}{cceeb638e697ccdfb7db15ac1e799dcb}
+      \strng{authorbibnamehash}{cceeb638e697ccdfb7db15ac1e799dcb}
+      \strng{authornamehash}{cceeb638e697ccdfb7db15ac1e799dcb}
+      \strng{authorfullhash}{cceeb638e697ccdfb7db15ac1e799dcb}
+      \field{labelalpha}{Gil51}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Biometrika}
+      \field{number}{3-4}
+      \field{title}{Note on the inversion theorem}
+      \field{volume}{38}
+      \field{year}{1951}
+      \field{pages}{481\bibrangedash 482}
+      \range{pages}{2}
+    \endentry
+    \entry{heston1993closed}{article}{}
+      \name{author}{1}{}{%
+        {{hash=da886e16f39671df2e1cc9208589b67d}{%
+           family={Heston},
+           familyi={H\bibinitperiod},
+           given={Steven\bibnamedelima L},
+           giveni={S\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Oxford University Press}%
+      }
+      \strng{namehash}{da886e16f39671df2e1cc9208589b67d}
+      \strng{fullhash}{da886e16f39671df2e1cc9208589b67d}
+      \strng{bibnamehash}{da886e16f39671df2e1cc9208589b67d}
+      \strng{authorbibnamehash}{da886e16f39671df2e1cc9208589b67d}
+      \strng{authornamehash}{da886e16f39671df2e1cc9208589b67d}
+      \strng{authorfullhash}{da886e16f39671df2e1cc9208589b67d}
+      \field{labelalpha}{Hes93}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The review of financial studies}
+      \field{number}{2}
+      \field{title}{A closed-form solution for options with stochastic volatility with applications to bond and currency options}
+      \field{volume}{6}
+      \field{year}{1993}
+      \field{pages}{327\bibrangedash 343}
+      \range{pages}{17}
+      \keyw{models}
+    \endentry
+    \entry{el1995changes}{article}{}
+      \name{author}{3}{}{%
+        {{hash=0a97a4fb90ecd9df3579334ee4bcc309}{%
+           family={El\bibnamedelima Karoui},
+           familyi={E\bibinitperiod\bibinitdelim K\bibinitperiod},
+           given={Nicole},
+           giveni={N\bibinitperiod}}}%
+        {{hash=f00c97804b1d8d506b175e7eefd45422}{%
+           family={Geman},
+           familyi={G\bibinitperiod},
+           given={Helyette},
+           giveni={H\bibinitperiod}}}%
+        {{hash=c774e33c3153ef9db1c5d50a7f69799d}{%
+           family={Rochet},
+           familyi={R\bibinitperiod},
+           given={Jean-Charles},
+           giveni={J\bibinithyphendelim C\bibinitperiod}}}%
+      }
+      \strng{namehash}{b4bfb64e6cc35b80d5029c2f2953928c}
+      \strng{fullhash}{b4bfb64e6cc35b80d5029c2f2953928c}
+      \strng{bibnamehash}{b4bfb64e6cc35b80d5029c2f2953928c}
+      \strng{authorbibnamehash}{b4bfb64e6cc35b80d5029c2f2953928c}
+      \strng{authornamehash}{b4bfb64e6cc35b80d5029c2f2953928c}
+      \strng{authorfullhash}{b4bfb64e6cc35b80d5029c2f2953928c}
+      \field{labelalpha}{EGR95}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Applied Probability}
+      \field{number}{2}
+      \field{title}{Changes of numeraire, changes of probability measure and option pricing}
+      \field{volume}{32}
+      \field{year}{1995}
+      \field{pages}{443\bibrangedash 458}
+      \range{pages}{16}
+    \endentry
+    \entry{carr1998towards}{article}{}
+      \name{author}{2}{}{%
+        {{hash=8f942ac1911200f60a35f4a6a69cf793}{%
+           family={Carr},
+           familyi={C\bibinitperiod},
+           given={Peter},
+           giveni={P\bibinitperiod}}}%
+        {{hash=943870ab3253ffdc16dc44c32042904d}{%
+           family={Madan},
+           familyi={M\bibinitperiod},
+           given={Dilip},
+           giveni={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{56c4f386af6744e03e4759049fac4765}
+      \strng{fullhash}{56c4f386af6744e03e4759049fac4765}
+      \strng{bibnamehash}{56c4f386af6744e03e4759049fac4765}
+      \strng{authorbibnamehash}{56c4f386af6744e03e4759049fac4765}
+      \strng{authornamehash}{56c4f386af6744e03e4759049fac4765}
+      \strng{authorfullhash}{56c4f386af6744e03e4759049fac4765}
+      \field{labelalpha}{CM98}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Volatility: New estimation techniques for pricing derivatives}
+      \field{title}{Towards a theory of volatility trading}
+      \field{volume}{29}
+      \field{year}{1998}
+      \field{pages}{417\bibrangedash 427}
+      \range{pages}{11}
+    \endentry
+    \entry{yamada2002finding}{article}{}
+      \name{author}{2}{}{%
+        {{hash=825ddea96bd7f9a436aa9fe7286a80f9}{%
+           family={Yamada},
+           familyi={Y\bibinitperiod},
+           given={Takeo},
+           giveni={T\bibinitperiod}}}%
+        {{hash=46c2d25dd441185f04d79605034ee3a4}{%
+           family={Kinoshita},
+           familyi={K\bibinitperiod},
+           given={Harunobu},
+           giveni={H\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{7b0f928ceabf5cc129f4c94b3181d20e}
+      \strng{fullhash}{7b0f928ceabf5cc129f4c94b3181d20e}
+      \strng{bibnamehash}{7b0f928ceabf5cc129f4c94b3181d20e}
+      \strng{authorbibnamehash}{7b0f928ceabf5cc129f4c94b3181d20e}
+      \strng{authornamehash}{7b0f928ceabf5cc129f4c94b3181d20e}
+      \strng{authorfullhash}{7b0f928ceabf5cc129f4c94b3181d20e}
+      \field{labelalpha}{YK02}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Discrete Applied Mathematics}
+      \field{number}{3}
+      \field{title}{Finding all the negative cycles in a directed graph}
+      \field{volume}{118}
+      \field{year}{2002}
+      \field{pages}{279\bibrangedash 291}
+      \range{pages}{13}
+    \endentry
+    \entry{bergomi2004smile}{article}{}
+      \name{author}{1}{}{%
+        {{hash=21a0b05dab9d88c3d8f905034593e16d}{%
+           family={Bergomi},
+           familyi={B\bibinitperiod},
+           given={Lorenzo},
+           giveni={L\bibinitperiod}}}%
+      }
+      \strng{namehash}{21a0b05dab9d88c3d8f905034593e16d}
+      \strng{fullhash}{21a0b05dab9d88c3d8f905034593e16d}
+      \strng{bibnamehash}{21a0b05dab9d88c3d8f905034593e16d}
+      \strng{authorbibnamehash}{21a0b05dab9d88c3d8f905034593e16d}
+      \strng{authornamehash}{21a0b05dab9d88c3d8f905034593e16d}
+      \strng{authorfullhash}{21a0b05dab9d88c3d8f905034593e16d}
+      \field{extraname}{1}
+      \field{labelalpha}{Ber04}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Available at SSRN 1493294}
+      \field{title}{Smile dynamics I}
+      \field{year}{2004}
+    \endentry
+    \entry{bergomi2005smile}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=a128cb491ad570ea4090a1bc0ea22cf5}{%
+           family={Bergomi},
+           familyi={B\bibinitperiod},
+           given={L},
+           giveni={L\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {October}%
+      }
+      \strng{namehash}{a128cb491ad570ea4090a1bc0ea22cf5}
+      \strng{fullhash}{a128cb491ad570ea4090a1bc0ea22cf5}
+      \strng{bibnamehash}{a128cb491ad570ea4090a1bc0ea22cf5}
+      \strng{authorbibnamehash}{a128cb491ad570ea4090a1bc0ea22cf5}
+      \strng{authornamehash}{a128cb491ad570ea4090a1bc0ea22cf5}
+      \strng{authorfullhash}{a128cb491ad570ea4090a1bc0ea22cf5}
+      \field{extraname}{2}
+      \field{labelalpha}{Ber05}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Smile Dynamics II. Risk Magazine}
+      \field{year}{2005}
+    \endentry
+    \entry{lee2005implied}{article}{}
+      \name{author}{1}{}{%
+        {{hash=4efdd74b0e599177cabd18eb449923e6}{%
+           family={Lee},
+           familyi={L\bibinitperiod},
+           given={Roger\bibnamedelima W},
+           giveni={R\bibinitperiod\bibinitdelim W\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{4efdd74b0e599177cabd18eb449923e6}
+      \strng{fullhash}{4efdd74b0e599177cabd18eb449923e6}
+      \strng{bibnamehash}{4efdd74b0e599177cabd18eb449923e6}
+      \strng{authorbibnamehash}{4efdd74b0e599177cabd18eb449923e6}
+      \strng{authornamehash}{4efdd74b0e599177cabd18eb449923e6}
+      \strng{authorfullhash}{4efdd74b0e599177cabd18eb449923e6}
+      \field{labelalpha}{Lee05}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Recent advances in applied probability}
+      \field{title}{Implied volatility: Statics, dynamics, and probabilistic interpretation}
+      \field{year}{2005}
+      \field{pages}{241\bibrangedash 268}
+      \range{pages}{28}
+    \endentry
+    \entry{cheng2009dynamics}{article}{}
+      \name{author}{2}{}{%
+        {{hash=9b36fd6cc38564a6d4585b817601bdee}{%
+           family={Cheng},
+           familyi={C\bibinitperiod},
+           given={Minder},
+           giveni={M\bibinitperiod}}}%
+        {{hash=2cacf1b05297448bff204a1904f24f56}{%
+           family={Madhavan},
+           familyi={M\bibinitperiod},
+           given={Ananth},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{f0c4634792011cf4ba3cd205bf2ee30e}
+      \strng{fullhash}{f0c4634792011cf4ba3cd205bf2ee30e}
+      \strng{bibnamehash}{f0c4634792011cf4ba3cd205bf2ee30e}
+      \strng{authorbibnamehash}{f0c4634792011cf4ba3cd205bf2ee30e}
+      \strng{authornamehash}{f0c4634792011cf4ba3cd205bf2ee30e}
+      \strng{authorfullhash}{f0c4634792011cf4ba3cd205bf2ee30e}
+      \field{labelalpha}{CM09}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of investment management}
+      \field{number}{4}
+      \field{title}{The dynamics of leveraged and inverse exchange-traded funds}
+      \field{volume}{16}
+      \field{year}{2009}
+      \field{pages}{43}
+      \range{pages}{1}
+    \endentry
+    \entry{fukasawa2017short}{article}{}
+      \name{author}{1}{}{%
+        {{hash=9ba5bbeb4d12fe57f4ca1afb00b0b3c0}{%
+           family={Fukasawa},
+           familyi={F\bibinitperiod},
+           given={Masaaki},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Taylor \& Francis}%
+      }
+      \strng{namehash}{9ba5bbeb4d12fe57f4ca1afb00b0b3c0}
+      \strng{fullhash}{9ba5bbeb4d12fe57f4ca1afb00b0b3c0}
+      \strng{bibnamehash}{9ba5bbeb4d12fe57f4ca1afb00b0b3c0}
+      \strng{authorbibnamehash}{9ba5bbeb4d12fe57f4ca1afb00b0b3c0}
+      \strng{authornamehash}{9ba5bbeb4d12fe57f4ca1afb00b0b3c0}
+      \strng{authorfullhash}{9ba5bbeb4d12fe57f4ca1afb00b0b3c0}
+      \field{labelalpha}{Fuk17}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Quantitative Finance}
+      \field{number}{2}
+      \field{title}{Short-time at-the-money skew and rough fractional volatility}
+      \field{volume}{17}
+      \field{year}{2017}
+      \field{pages}{189\bibrangedash 198}
+      \range{pages}{10}
+    \endentry
+    \entry{geeraert2017mini}{article}{}
+      \name{author}{5}{}{%
+        {{hash=835bbff1733d140eb4970aee73e7c238}{%
+           family={Geeraert},
+           familyi={G\bibinitperiod},
+           given={Sébastien},
+           giveni={S\bibinitperiod}}}%
+        {{hash=aff26f3f959ca5039470192291a089ee}{%
+           family={Lehalle},
+           familyi={L\bibinitperiod},
+           given={Charles-Albert},
+           giveni={C\bibinithyphendelim A\bibinitperiod}}}%
+        {{hash=6724042a399c2e67a6f3a2ec5612519e}{%
+           family={Pearlmutter},
+           familyi={P\bibinitperiod},
+           given={Barak\bibnamedelima A},
+           giveni={B\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=fa86563219a1f7a35e152ff49aaa75ec}{%
+           family={Pironneau},
+           familyi={P\bibinitperiod},
+           given={Olivier},
+           giveni={O\bibinitperiod}}}%
+        {{hash=83fad0e7c5079e1f2dc118a20cf52e2e}{%
+           family={Reghai},
+           familyi={R\bibinitperiod},
+           given={Adil},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {EDP Sciences}%
+      }
+      \strng{namehash}{764c38fa331b304c4075c8030e07a6e0}
+      \strng{fullhash}{c5e5aff9e900528ae2a275912a90685a}
+      \strng{bibnamehash}{764c38fa331b304c4075c8030e07a6e0}
+      \strng{authorbibnamehash}{764c38fa331b304c4075c8030e07a6e0}
+      \strng{authornamehash}{764c38fa331b304c4075c8030e07a6e0}
+      \strng{authorfullhash}{c5e5aff9e900528ae2a275912a90685a}
+      \field{labelalpha}{Gee+17}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{ESAIM: Proceedings and Surveys}
+      \field{title}{Mini-symposium on automatic differentiation and its applications in the financial industry}
+      \field{volume}{59}
+      \field{year}{2017}
+      \field{pages}{56\bibrangedash 75}
+      \range{pages}{20}
+    \endentry
+    \entry{guyon2022does}{article}{}
+      \name{author}{2}{}{%
+        {{hash=ae97945971d3482f04991e10218f030e}{%
+           family={Guyon},
+           familyi={G\bibinitperiod},
+           given={Julien},
+           giveni={J\bibinitperiod}}}%
+        {{hash=a6e29e26df6c3f0a5ae95f83fae09de4}{%
+           family={El\bibnamedelima Amrani},
+           familyi={E\bibinitperiod\bibinitdelim A\bibinitperiod},
+           given={Mehdi},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{60667cf28419ea0aebf0e9c943c3e6c0}
+      \strng{fullhash}{60667cf28419ea0aebf0e9c943c3e6c0}
+      \strng{bibnamehash}{60667cf28419ea0aebf0e9c943c3e6c0}
+      \strng{authorbibnamehash}{60667cf28419ea0aebf0e9c943c3e6c0}
+      \strng{authornamehash}{60667cf28419ea0aebf0e9c943c3e6c0}
+      \strng{authorfullhash}{60667cf28419ea0aebf0e9c943c3e6c0}
+      \field{labelalpha}{GE22}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Available at SSRN 4174538}
+      \field{title}{Does the Term-Structure of Equity At-the-Money Skew Really Follow a Power Law?}
+      \field{year}{2022}
+    \endentry
+    \entry{jaber2022quintic}{article}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{2}{}{%
+        {{hash=3f462a39879e7b101ece6071fa5b0f9a}{%
+           family={Jaber},
+           familyi={J\bibinitperiod},
+           given={Eduardo\bibnamedelima Abi},
+           giveni={E\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=9c01cd70ede0a46a29dd92ee55c16822}{%
+           family={Illand},
+           familyi={I\bibinitperiod},
+           given={Camille},
+           giveni={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{7e5b68243f8e411095cf18e1704872b6}
+      \strng{fullhash}{7e5b68243f8e411095cf18e1704872b6}
+      \strng{bibnamehash}{7e5b68243f8e411095cf18e1704872b6}
+      \strng{authorbibnamehash}{7e5b68243f8e411095cf18e1704872b6}
+      \strng{authornamehash}{7e5b68243f8e411095cf18e1704872b6}
+      \strng{authorfullhash}{7e5b68243f8e411095cf18e1704872b6}
+      \field{labelalpha}{JI+22}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{arXiv preprint arXiv:2212.10917}
+      \field{title}{The quintic Ornstein-Uhlenbeck volatility model that jointly calibrates SPX \& VIX smiles}
+      \field{year}{2022}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
