@@ -1,0 +1,86 @@
+\section{Central limit theorem}
+
+\begin{tcolorbox}[width=\linewidth, sharp corners=all, colback=white!95!black]
+What is the central limit theorem? Highlight the proof steps. Give a counter example for when the sequence of random variables lacks independence; and when it is not identically distributed.
+\end{tcolorbox}
+
+\paragraph*{Theorem statement:} Let $(\Omega, \mathcal{F}, \mathbb{P})$ be a probability space. Let $(X_n)_{n\in \mathbb{N}^{*}}$ a sequence of independent and identically distributed (i.i.d.) real random variables with finite variance (they belong to $L^2(\Omega, \mathcal{F}, \mathbb{P})$). Assume this variance is non null. Then, 
+\[
+\sqrt{n}(\bar{X}_n - \mathbb{E}[X_1]) \stackrel{\mathcal{L}}{\underset{n \to \infty}{\longrightarrow}} \mathcal{N}(0, \operatorname{Var}(X_1)).
+\]
+
+
+\begin{proof}
+    Let's consider without loss of generality the case where $\mathbb{E}[X_1]=0$ and $\operatorname{Var}(X_1) = 1$ (otherwise switch to considering $Y_n = \frac{X_n - \mathbb{E}[X_1]}{\operatorname{Var}(X_1)}$).
+
+    Our goal is to use \textit{L\'evy's continuity theorem}: the pointwise convergence of the sequence of characteristic function is equivalent to the convergence in distribution.
+
+    With $X\sim \mathcal{N}(0,1)$, the characteristic function $\phi_x(\cdot)$ is:
+    \begin{align*}
+        \phi_X(t) &= \mathbb{E}[e^{itX}]\\
+        &= \frac1{\sqrt{2\pi}} \int_{-\infty}^{+\infty} e^{itx - x^2/2} dx\\
+        &= \frac1{\sqrt{2\pi}}e^{(it)^2/2} \int_{-\infty}^{+\infty} e^{-1/2(x - it)^2} dx\\
+        &= e^{-t/2}.
+    \end{align*}
+
+    Now, let $S_n = \sum_{i=1}^{n} X_i$. Let's study the convergence of the sequence of characteristic function induced by $X_i$: $\left(\phi_{S_n/\sqrt{n}}\right)_{n\in \mathbb{N}^{*}}$.
+
+    First, let's explicit this characteristic function:
+    
+    \begin{align*}
+        \phi_{S_n/\sqrt{n}}(t) &= \mathbb{E}[\exp(it S_n/\sqrt{n})]\\
+        &= \mathbb{E}\left[\exp(\frac{it}{\sqrt{n}} \sum_{i=1}^{n} X_i)\right]\\
+        &= \mathbb{E}\left[\prod_{i=1}^{n} \exp(\frac{it}{\sqrt{n}} X_i)\right]\\
+        &= \prod_{i=1}^{n} \mathbb{E}\left[\exp(\frac{it}{\sqrt{n}} X_i)\right] \quad \text{by independence of the $X_i$'s}\\
+        &= \prod_{i=1}^{n} \phi_{X_i}(t/ \sqrt{n})\\
+        &= \left(\phi_{X_1}(t/ \sqrt{n})\right)^n \quad \text{as the $X_i$'s are identically distributed.}
+    \end{align*}
+
+    $X_1$ belongs to $L^2(\Omega, \mathcal{F}, \mathbb{P})$ thus the characteristic function is twice differentiable, and $\phi'_{X_1}(0) = i \mathbb{E}[X_1] = 0$ while $\phi''_{X_1}(0) = - \mathbb{E}[X_1^2] = -\operatorname{Var}(X_1) = -1$. Thus in the neighbourhood of $0$, there exists a development of the characteristic function of the form: \[\phi_{X_1}(h) = 1 - h^2/2 + \underset{h \to 0}{o} (h^2).\]
+
+    Let's remark that $\left(1-\frac{t^2}{2n}\right)^n \underset{n \to \infty}{\longrightarrow} e^{-t^2/2}$, thus we consider $\Big\lvert \phi_{S_n/\sqrt{n}}(t) - (1-\frac{t^2}{2n})^n \Big\rvert = \Big\lvert \left(\phi_{X_1}(t/ \sqrt{n})\right)^n - (1-\frac{t^2}{2n})^n \Big\rvert $.
+
+    We need an upper bound for quantities of the type $\lvert a^n - b^n \rvert$, with $\lvert a \rvert < 1$ and $\lvert b \rvert < 1$.
+
+    Fortunately, 
+    \begin{align*}
+        \lvert a^n - b^n \rvert &= \Big\lvert (a-b) \sum_{k=0}^{n-1} a^{n-1-k} b^k \Big\rvert\\
+        &\leq \lvert a-b \rvert \sum_{k=0}^{n-1} \Big\lvert  a^{n-1-k} b^k \Big\rvert\\
+        &\leq n\lvert a-b \rvert.
+    \end{align*}
+
+    Thus, plugging it all together:
+
+    \begin{align*}
+        \Big\lvert \phi_{S_n/\sqrt{n}}(t) - (1-t^2/2n)^n \Big\rvert &= \Big\lvert \left(\phi_{X_1}(t/ \sqrt{n})\right)^n - (1-t^2/2)^n \Big\rvert\\
+        &\leq n \Big\lvert \phi_{X_1}(t/ \sqrt{n}) (1-\frac{t^2}{2n}) \Big\rvert\\
+        &= n \Big\lvert 1 - t^2/2n + t^2/n \varepsilon (t/\sqrt{n}) - 1 + \frac{t^2}{2n}\Big\rvert\\
+        &= t^2 \lvert \varepsilon (t/\sqrt{n}) \rvert\\
+        &\underset{n \to \infty}{\longrightarrow} 0.
+    \end{align*}
+
+    Applying L\'evy's continuity theorem, we get the convergence (in law) towards the standard normal distribution.
+
+\end{proof}
+
+\paragraph*{What if we have non-identical distributions?}
+
+Let's consider a sequence of independent but non-identical random variables, with mean $\mu_i$ and variance $\sigma_i^2$. There are conditions like Lyapunov's (moments of order $2+\delta$ with some boundary of the rate of growth of the moments) or Lindeberg's for which ther CLT still holds: with $s_n = \sum_{i=1}^n \sigma_i^2$, $\frac1{s_n} \sum_{i=1}^n (X_i - \mu_i) \overset{(d)}{\longrightarrow} \mathcal{N}(0,1)$.
+
+We can build a counterexample, by trying to break the above conditions for instance. An other natural goal could be choosing a sequence of random variables whose sum has a finite support, as it will obviously not converge towards a normal distribution.\newline Let's start with i.i.d. $Z_k \stackrel{i.i.d.}{\sim} \mathcal{U}\left[-1, 1\right]$, and $X_k = a^k Z_k$ where $0<a<1$. The $X_k$'s are independent uniform on $\left[-a^k, a^k\right]$, with mean $\mathbb{E}\left[X_k\right] = 0$ and variance  $\sigma_k^2 = \frac1{12}(a^k - (-a^k))^2 = a^{2k}/3 < \infty \quad \forall k \in \mathbb{N}^{*}$. However, $\sum X_k \in \left[-\frac1{1-a}, \frac1{1-a}\right]$ thus cannot converge to a Gaussian distribution.
+
+\paragraph*{What if the random variables are non-independent?}
+
+A trivial counterexample would be taking a sequence where each random variable coincides with the first one.
+
+A more interesting counterexample involving timeseries would be the $MA(1)$ model: \[X_t = \theta Z_{t-1} + Z_t, \quad Z_t \sim \mathcal{N}(0, \sigma_Z^2).\]
+
+The autocorrelation function $\gamma(\cdot)$ would be:
+\begin{align*}
+    \gamma(0) &= \sigma_X^2 = (\theta^2 +1) \sigma_Z^2,\\
+    \gamma(1) &=\theta \sigma_Z^2,\\
+    \gamma(k) &= 0 \quad \forall k > 1.
+\end{align*}
+
+With such non-zero autocorrelation, the limit variance of $\sqrt{n}(\bar{X}_n - \mu)$ no longer is $(\theta^2 +1) \sigma_Z^2$  but rather $\gamma(0) + 2 \sum_{k=1}^\infty \gamma(k) = 
+(\theta +1)^2 \sigma_Z^2$.
