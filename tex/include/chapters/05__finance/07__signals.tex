@@ -11,7 +11,22 @@ We are backtesting a trading signal. While there are already a lot of caveats in
 \begin{figure}[H]
     \includegraphics[width=0.85\textwidth]{include/img/banks_statarb_equity_curve.png}
     \centering
-    \caption{Equity curve of an volume autocorrelation strategy on major bank stocks traded on the NYSE, based on an idea from \href{https://x.com/systematicls/status/1802666506125558115}{@systematicls}. See \href{https://github.com/vtisserand/quant_itws/tree/main/code/snippet/bank_statarb_signal.py}{code snippet}.}
+    \caption{Equity curve of an volume autocorrelation strategy on major bank stocks traded on the NYSE, based on an article from \href{https://x.com/systematicls/status/1802666506125558115}{@systematicls}. See \href{https://github.com/vtisserand/quant_itws/tree/main/code/snippets/bank_statarb_signal.py}{code snippet}.}
     \label{fig:banks_equity_curve}
 \end{figure}
 
+\paragraph*{Minimum track record length}
+
+A recently onboarded PM claims to have a strategy yielding an annualized Sharpe of $2.0$, from annualized $10\%$ return and annualized volatility $5\%$. After a year of trading, they are down $3\%$ with a volatility of $9\%$. Can they be held accountable for such a performance?
+
+To conclude on the signal the PM claims to be trading, we can build confidence intervals on the actual Sharpe ratio given the number of days of trading.
+
+With classic estimators for the mean and variance of the series, $\hat{\mu}$ and $\hat{\sigma}^2$, the estimator for the Sharpe ratio follows: $\widehat{SR} = \dfrac{\hat{\mu} - R_f}{\hat{\sigma}} = g(\hat{\mu}, \hat{\sigma}^2)$.\newline We can derive asymptotic properties on this estimator with the Central Limit Theorem: assuming i.i.d. returns, we have: \[\sqrt{T}(\widehat{SR} - SR) \stackrel{(d)}{\underset{T \to \infty}{\longrightarrow}} \mathcal{N}(0, \operatorname{Var}(SR)).\]
+
+We just need to explicit the variance here: we are considering a transformation of the column estimator $\hat{\theta} = (\hat{\mu}, \hat{\sigma}^2)^{T}$. $\sqrt{T}(\hat{\theta} - \theta) \overset{(d)}{\longrightarrow} \mathcal{N}(0, \operatorname{Var}(\theta))$, where $\operatorname{Var}(\theta) = \begin{pmatrix} \sigma^2 & 0\\ 0 & 2\sigma^4 \end {pmatrix}.$ \newline This is now an application of the \textit{delta method}: \[\sqrt{T}(\widehat{SR} - SR) \overset{(d)}{\longrightarrow} \mathcal{N}\left(0, \dfrac{\partial g}{\partial \theta}^{T} \operatorname{Var}(\theta) \dfrac{\partial g}{\partial \theta}\right).\]
+
+$\dfrac{\partial g}{\partial \theta}^{T} = \left(\dfrac{\partial g}{\partial \mu}, \dfrac{\partial g}{\partial \sigma^2}\right) = \left(1/\sigma, -(\mu - R_f) / (2\sigma^3)\right).$
+
+Thus, $\operatorname{Var}(SR) = 1 + \dfrac{(\mu - R_f)^2}{2\sigma^2} = 1 + \frac1{2}SR^2.$
+
+We can now compute standard errors (SEs) for the Sharpe ratio as $SE(\widehat{SR}) = \sqrt{\frac1{T}(1+\frac1{2} SR^2)}$, allowing the $95\%$ confidence bounds: $\widehat{SR} \pm 1.96 \times \sqrt{\frac1{T}(1+\frac1{2} SR^2)}$. The higher the Sharpe, the noisier the estimation. Overall the confidence enveloppe decreases as $T^{-1/2}$.\newline For small Sharpes ($< 1$), the contribution of the erros in the mean estimator matter the most, while for higher Sharpes the variance matters more, see \cite{lo2002statistics}.
